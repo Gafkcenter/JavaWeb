@@ -59,9 +59,6 @@ JavaWeb基于 SpringBoot2+Layui2.5.6+Thymeleaf+MybatisPlus 研发，致力于做
 ### 版权声明
 JavaWeb采用LGPL-3.0开源协议
 
-### JavaWeb前端模板
-* JavaWeb最新版本，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
-
 
 ## 开发者信息
 * 系统名称：JavaWeb权限(RBAC)及内容管理框架  
