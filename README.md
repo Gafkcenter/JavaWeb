@@ -15,7 +15,7 @@
 	    <img src="https://img.shields.io/badge/JavaWeb-v1.0.0-brightgreen.svg" />
 	</a>
 	<a href="https://www.layui.com/">
-        <img src="https://img.shields.io/badge/layui-2.4.5-blue.svg" alt="layui">
+        <img src="https://img.shields.io/badge/layui-2.5.6-blue.svg" alt="layui">
     </a>
 	<a href='https://gitee.com/javaweb520/JavaWeb/stargazers'>
 	    <img src='https://gitee.com/javaweb520/JavaWeb/badge/star.svg?theme=white' alt='star'></img>
