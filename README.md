@@ -60,6 +60,14 @@ JavaWeb基于 SpringBoot2+Layui2.5.6+Thymeleaf+MybatisPlus 研发，致力于做
 JavaWeb采用LGPL-3.0开源协议
 
 
+### JavaWeb版本说明
+
+| 版本名称 | 说明 | 地址 |
+| :---: | :---: | :---: |
+| JavaWeb 混编版 v1.0.0 | 采用SpringBoot2+Thymeleaf+layui | https://gitee.com/javaweb520/JavaWeb |
+| JavaWeb Vue版本 v1.0.0 | 前后端分离版，采用SpringBoot2+Vue | https://gitee.com/javaweb520/JavaWeb_Vue |
+
+
 ## 开发者信息
 * 系统名称：JavaWeb权限(RBAC)及内容管理框架  
 * 作者：鲲鹏
@@ -79,6 +87,7 @@ JavaWeb采用LGPL-3.0开源协议
 
 ## 扫码咨询
 ![一对一技术服务](http://images.javaweb.rxthink.cn/demo/qq.png)
+
 
 ## 效果图展示
 
