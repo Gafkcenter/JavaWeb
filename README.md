@@ -77,6 +77,8 @@ JavaWeb采用LGPL-3.0开源协议
 
 [技术支持QQ：1175401194](http://wpa.qq.com/msgrd?v=3&amp;uin=1175401194&amp;site=qq&amp;menu=yes)
 
+## 扫码咨询
+![一对一技术服务](http://images.javaweb.rxthink.cn/demo/qq.png)
 
 ## 效果图展示
 
