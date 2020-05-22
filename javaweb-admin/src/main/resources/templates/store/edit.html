@@ -1,0 +1,278 @@
+<html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+	<form class="layui-form model-form" action="" style="width:80%;">
+		<input name="id" type="hidden" th:value="${info['id']}?:0">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺LOGO：</label>
+				<widget:uploadSingleImage name="storeLogo" th:value="${info['storeLogo']}" size="90x90" title="店铺LOGO" tips="450x450"/>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺头像：</label>
+				<widget:uploadSingleImage name="storeAvatar" th:value="${info['storeAvatar']}" size="90x90" title="店铺头像" tips="450x450"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺分类ID：</label>
+				<div class="layui-input-inline">
+					<input name="storeCategoryId" th:value="${info['storeCategoryId']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺分类ID" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺分类名称：</label>
+				<div class="layui-input-inline">
+					<input name="storeCategoryName" th:value="${info['storeCategoryName']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺分类名称" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺等级ID：</label>
+				<div class="layui-input-inline">
+					<input name="storeGradeId" th:value="${info['storeGradeId']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺等级ID" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺等级名称：</label>
+				<div class="layui-input-inline">
+					<input name="storeGradeName" th:value="${info['storeGradeName']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺等级名称" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺类型：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="storeType|1|店铺类型|name|id" data="1=公司,2=个人" th:value="${info['storeType']}?:1"/>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺名称：</label>
+				<div class="layui-input-inline">
+					<input name="storeName" th:value="${info['storeName']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺名称" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺公司名称：</label>
+				<div class="layui-input-inline">
+					<input name="storeCompanyName" th:value="${info['storeCompanyName']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺公司名称" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">公司所在地区(如 江苏 南京)：</label>
+				<div class="layui-input-inline">
+					<input name="storeCompanyArea" th:value="${info['storeCompanyArea']}" lay-verify="required" autocomplete="off" placeholder="请输入公司所在地区(如 江苏 南京)" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺地址：</label>
+				<div class="layui-input-inline">
+					<input name="storeAddress" th:value="${info['storeAddress']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺地址" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">邮政编码：</label>
+				<div class="layui-input-inline">
+					<input name="storeZipcode" th:value="${info['storeZipcode']}" lay-verify="required" autocomplete="off" placeholder="请输入邮政编码" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺Banner：</label>
+				<div class="layui-input-inline">
+					<input name="storeBanner" th:value="${info['storeBanner']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺Banner" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺SEO关键字：</label>
+				<div class="layui-input-inline">
+					<input name="storeKeywords" th:value="${info['storeKeywords']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺SEO关键字" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺QQ：</label>
+				<div class="layui-input-inline">
+					<input name="storeQq" th:value="${info['storeQq']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺QQ" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺WW：</label>
+				<div class="layui-input-inline">
+					<input name="storeWw" th:value="${info['storeWw']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺WW" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">商家电话：</label>
+				<div class="layui-input-inline">
+					<input name="storePhone" th:value="${info['storePhone']}" lay-verify="required" autocomplete="off" placeholder="请输入商家电话" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">主营商品：</label>
+				<div class="layui-input-inline">
+					<input name="storeMainbusiness" th:value="${info['storeMainbusiness']}" lay-verify="required" autocomplete="off" placeholder="请输入主营商品" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">是否推荐：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="storeRecommend|1|是否推荐|name|id" data="1=是,2=否" th:value="${info['storeRecommend']}?:2"/>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺当前主题：</label>
+				<div class="layui-input-inline">
+					<input name="storeTheme" th:value="${info['storeTheme']}" lay-verify="required" autocomplete="off" placeholder="请输入店铺当前主题" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺信用：</label>
+				<div class="layui-input-inline">
+					<input name="storeCredit" th:value="${info['storeCredit']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺信用" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺收藏数量：</label>
+				<div class="layui-input-inline">
+					<input name="storeCollect" th:value="${info['storeCollect']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺收藏数量" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺销量：</label>
+				<div class="layui-input-inline">
+					<input name="storeSales" th:value="${info['storeSales']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺销量" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">售前客服：</label>
+				<div class="layui-input-inline">
+					<input name="storePresales" th:value="${info['storePresales']}" lay-verify="required" autocomplete="off" placeholder="请输入售前客服" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">售后客服：</label>
+				<div class="layui-input-inline">
+					<input name="storeAftersales" th:value="${info['storeAftersales']}" lay-verify="required" autocomplete="off" placeholder="请输入售后客服" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">营业时间：</label>
+				<div class="layui-input-inline">
+					<input name="storeBusinessTime" th:value="${info['storeBusinessTime']}" lay-verify="required" autocomplete="off" placeholder="请输入营业时间" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺开通时间：</label>
+				<div class="layui-input-inline">
+					<input name="storeStartTime" th:value="${info['storeStartTime']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺开通时间" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺关闭时间：</label>
+				<div class="layui-input-inline">
+					<input name="storeEndTime" th:value="${info['storeEndTime']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺关闭时间" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺状态：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="storeStatus|1|店铺状态|name|id" data="1=正常,2=审核中,2=关闭" th:value="${info['storeStatus']}?:2"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">店铺排序：</label>
+				<div class="layui-input-inline">
+					<input name="sort" th:value="${info['sort']}" lay-verify="required|number" autocomplete="off" placeholder="请输入店铺排序" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">商铺名称：</label>
+				<div class="layui-input-inline">
+					<input name="merchantName" th:value="${info['merchantName']}" lay-verify="required" autocomplete="off" placeholder="请输入商铺名称" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">商家地址：</label>
+				<div class="layui-input-inline">
+					<input name="merchantAddress" th:value="${info['merchantAddress']}" lay-verify="required" autocomplete="off" placeholder="请输入商家地址" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">商铺电话：</label>
+				<div class="layui-input-inline">
+					<input name="merchantTel" th:value="${info['merchantTel']}" lay-verify="required" autocomplete="off" placeholder="请输入商铺电话" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">公交线路：</label>
+				<div class="layui-input-inline">
+					<input name="merchantBus" th:value="${info['merchantBus']}" lay-verify="required" autocomplete="off" placeholder="请输入公交线路" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">是否平台店铺：</label>
+				<div class="layui-input-inline">
+					<widget:switchCheck name="isPlatform" data="是|否" th:value="${info['isPlatform']} ?: 2"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">申请状态：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="status|1|申请状态|name|id" data="0=信息已保存,10=已提交申请,20=资料审核成功,30=资料审核失败,40=缴费完成,50=缴费审核失败,60=审核通过开店" th:value="${info['status']}?:0"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">店铺简介：</label>
+			<div class="layui-input-block">
+				<textarea name="storeIntro" placeholder="请输入店铺简介" class="layui-textarea" th:text="${info['storeIntro']}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">店铺SEO描述：</label>
+			<div class="layui-input-block">
+				<textarea name="storeDescription" placeholder="请输入店铺SEO描述" class="layui-textarea" th:text="${info['storeDescription']}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">审核备注：</label>
+			<div class="layui-input-block">
+				<textarea name="note" placeholder="请输入审核备注" class="layui-textarea" th:text="${info['note']}"></textarea>
+			</div>
+		</div>
+		<widget:btnSubmit name="submit|立即保存,close|关闭"/>
+	</form>
+</div>
+</html>

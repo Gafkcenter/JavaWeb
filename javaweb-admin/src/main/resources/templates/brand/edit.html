@@ -1,0 +1,61 @@
+<html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+	<form class="layui-form model-form" action="" style="width:80%;">
+		<input name="id" type="hidden" th:value="${info['id']}?:0">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">品牌logo：</label>
+				<widget:uploadSingleImage name="brandLogo" th:value="${info['brandLogo']}" size="90x90" title="品牌logo" tips="450x450"/>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">专区大图：</label>
+				<widget:uploadSingleImage name="bigPic" th:value="${info['bigPic']}" size="90x90" title="专区大图" tips="450x450"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">品牌名称：</label>
+				<div class="layui-input-inline">
+					<input name="brandName" th:value="${info['brandName']}" lay-verify="required" autocomplete="off" placeholder="请输入品牌名称" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">所属品牌商：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="brandCompanyId|1|所属品牌商|name|id" sql="SELECT id,`name` FROM pms_brand_company WHERE mark=1 ORDER BY sort ASC;" th:value="${info['brandCompanyId']}?:0"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">所属店铺：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="storeId|1|所属店铺|store_name|id" sql="SELECT id,store_name FROM sms_store WHERE mark=1 ORDER BY sort ASC;" th:value="${info['storeId']}?:0"/>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">排序号：</label>
+				<div class="layui-input-inline">
+					<input name="sort" th:value="${info['sort']}" lay-verify="required|number" autocomplete="off" placeholder="请输入排序号" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">状态：</label>
+				<div class="layui-input-inline">
+					<widget:switchCheck name="status" data="启用|停用" th:value="${info['status']} ?: 1"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">品牌简介：</label>
+			<div class="layui-input-block">
+				<textarea name="brandIntro" placeholder="请输入品牌简介" class="layui-textarea" th:text="${info['brandIntro']}"></textarea>
+				<widget:kindEditor name="brandIntro" type="default" width="100%" height="350"/>
+			</div>
+		</div>
+		<widget:btnSubmit name="submit|立即保存,close|关闭"/>
+	</form>
+</div>
+</html>
