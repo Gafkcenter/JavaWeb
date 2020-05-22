@@ -60,7 +60,7 @@ JavaWeb基于 SpringBoot2+Layui2.5.6+Thymeleaf+MybatisPlus 研发，致力于做
 JavaWeb采用LGPL-3.0开源协议
 
 
-### JavaWeb版本说明
+### 版本说明
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
