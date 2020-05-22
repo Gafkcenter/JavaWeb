@@ -58,21 +58,6 @@ JavaWeb基于 SpringBoot2+Layui2.5.6+Thymeleaf+MybatisPlus 研发，致力于做
 - **JS封装** 对常用js插件进行二次封装，使js代码变得简洁，更加易维护。
 - **参数配置** 灵活控制常用功能的开关，无需重启项目即可生效，实时刷新。
 
-### 日志管理
-日志记录采用AOP切面的方式对所有包含@BussinessLog注解的方法进行aop切入，会完成的记录下当前用户所有的操作记录（即@BussinessLog value属性的内容）。
-
-
-### 版权声明
-JavaWeb采用LGPL-3.0开源协议
-
-
-### 版本说明
-
-| 版本名称 | 说明 | 地址 |
-| :---: | :---: | :---: |
-| JavaWeb 混编版 v1.0.0 | 采用SpringBoot2+Thymeleaf+layui | https://gitee.com/javaweb520/JavaWeb |
-| JavaWeb Vue版本 v1.0.0 | 前后端分离版，采用SpringBoot2+Vue | https://gitee.com/javaweb520/JavaWeb_Vue |
-
 
 ## 开发者信息
 * 系统名称：JavaWeb权限(RBAC)及内容管理框架  
@@ -93,6 +78,170 @@ JavaWeb采用LGPL-3.0开源协议
 
 ## 扫码咨询
 ![一对一技术服务](http://images.javaweb.rxthink.cn/demo/qq.png)
+
+
+### 日志管理
+日志记录采用AOP切面的方式对所有包含@BussinessLog注解的方法进行aop切入，会完成的记录下当前用户所有的操作记录（即@BussinessLog value属性的内容）。
+
+
+### 版权声明
+JavaWeb采用LGPL-3.0开源协议
+
+
+### 版本说明
+
+| 版本名称 | 说明 | 地址 |
+| :---: | :---: | :---: |
+| JavaWeb 混编版 v1.0.0 | 采用SpringBoot2+Thymeleaf+layui | https://gitee.com/javaweb520/JavaWeb |
+| JavaWeb Vue版本 v1.0.0 | 前后端分离版，采用SpringBoot2+Vue | https://gitee.com/javaweb520/JavaWeb_Vue |
+
+
+### Thymeleaf模板引擎页面拆分
+例如，把主页拆分成三部分，每个部分单独一个页面，更加便于维护
+```
+<!-- 头部开始 -->
+<header th:replace="header.html"></header>
+<!-- 头部开始 -->
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <!-- 内容区 -->
+        <div class="layui-card-body" layout:fragment="content">
+            内容区
+        </div>
+    </div>
+</div>
+<!-- 脚部开始 -->
+<header th:replace="header.html"></header>
+<!-- 脚部开始 -->
+
+```
+以上是对整个页面进行的拆分，把公共部分抽离出来，子页面只需继承当前页面专心处理业务UI即可
+
+开发业务模块时使用如下
+```
+<html layout:decorator="public/layout" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+
+    此处为子页面业务UI部分，此处使用Layout模板继承
+
+</div>
+</html>
+```
+
+业务模块列表页使用方法如下：
+```
+<html layout:decorator="public/layout" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+
+    <!-- 表格工具栏 -->
+    <form class="layui-form toolbar">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="name" placeholder="请输入职级名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!-- 状态下拉单选 -->
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <!-- 下拉单选 -->
+                    <widget:singleSelect name="status|0|状态|name|id" th:data="${LEVEL_STATUS_LIST}" value="0"/>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline" style="width: auto;">
+                    <widget:btnQuery name="查询"/>
+                    <widget:btnAdd name="添加职级"/>
+                    <widget:btnDAll name="批量删除"/>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- 数据表格 -->
+    <table class="layui-hide" id="tableList" lay-filter="tableList"></table>
+
+    <!-- 表格操作列 -->
+    <script type="text/html" id="toolBar">
+        <widget:btnEdit name="编辑"/>
+        <widget:btnDel name="删除"/>
+    </script>
+
+    <!-- 状态 -->
+    <script type="text/html" id="statusTpl">
+        <input type="checkbox" name="status" value="{{ d.id }}" lay-skin="switch" lay-text="正常|停用" lay-filter="status" {{ d.status == 1 ? 'checked' : '' }} >
+    </script>
+</div>
+</html>
+```
+
+业务模块表单编辑页使用方法如下：
+```
+<html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+	<form class="layui-form model-form" action="">
+		<input name="id" type="hidden" th:value="${info['id']}?:0">
+		<div class="layui-form-item">
+			<label class="layui-form-label">职级名称：</label>
+			<div class="layui-input-block">
+				<input name="name" th:value="${info['name']}" lay-verify="required" autocomplete="off" placeholder="请输入职级名称" class="layui-input" type="text">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">状态：</label>
+			<div class="layui-input-block">
+				<widget:switchCheck name="status" data="正常|停用" th:value="${info['status']} ?: 1"/>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">显示顺序：</label>
+			<div class="layui-input-block">
+				<input name="sort" th:value="${info['sort']}" lay-verify="required|number" autocomplete="off" placeholder="请输入显示顺序" class="layui-input" type="text">
+			</div>
+		</div>
+		<widget:btnSubmit name="submit|立即保存,close|关闭"/>
+	</form>
+</div>
+</html>
+```
+
+以上是Thymeleaf模板的拆分与集成，详细说明请参开官方文档。
+
+## 常规组件
+1、上传图片图片及裁剪
+```
+<widget:uploadSingleImage name="avatar" th:value="${info['avatar']}" size="90x90" title="头像" tips="450x450"/>
+```
+2、下拉单选
+```
+<widget:singleSelect name="gender|1|性别|name|id" th:data="${ADMIN_GENDER_LIST}" th:value="${info['gender']}?:3"/>
+```
+3、日期选择
+```
+<widget:dateSelect name="birthday|date|请选择出生日期" th:value="${info['birthday']}"/>
+```
+4、分组下拉选择
+```
+<widget:complexSelect name="deptId|0|部门|name|id" sql="SELECT id,`name` FROM sys_dep WHERE pid=? AND mark=1 ORDER BY sort ASC;" th:value="${info['deptId']}?:0"/>
+```
+5、城市选择
+```
+<widget:citySingleSelect th:value="${info['districtId']} ?: 0" limit="3"/>
+```
+6、开关
+```
+<widget:switchCheck name="status" data="正常|禁用" th:value="${info['status']} ?: 1"/>
+```
+7、复选框选择(如：角色多选)
+```
+<widget:checkboxSingleSelect name="roleIds|name|id" sql="SELECT id,`name` FROM sys_role WHERE mark=1 ORDER BY sort ASC;" th:value="${info['roleIds']}?:[]"/>
+```
+8、下拉多选
+```
+<widget:xmSelect name="test|1|请选择角色|name|id|pid" sql="SELECT id, `name`, pid FROM sys_dep WHERE mark=1 ORDER BY sort ASC;" value="1,2"/>
+```
 
 
 ## 效果图展示
