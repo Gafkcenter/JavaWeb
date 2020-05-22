@@ -2,11 +2,17 @@
 <h1 align="center"> JavaWeb权限(RBAC)及内容管理框架</h1>
 
 <p align="center">
+	<a href="http://spring.io/projects/spring-boot">
+        <img src="https://img.shields.io/badge/spring--boot-2.1.6-green.svg" alt="spring-boot">
+    </a>
+    <a href="http://mp.baomidou.com">
+        <img src="https://img.shields.io/badge/mybatis--plus-3.0-blue.svg" alt="mybatis-plus">
+    </a>  
+    <a href="https://www.thymeleaf.org/">
+        <img src="https://img.shields.io/badge/thymeleaf-2.9.3-yellow.svg" alt="thymeleaf">
+    </a> 
 	<a href="http://www.javaweb.vip/">
-	    <img src="https://img.shields.io/hexpm/l/plug.svg" />
-	</a>
-	<a href="http://www.javaweb.vip/">
-	    <img src="https://img.shields.io/badge/JavaWeb权限-v1.0.0-brightgreen.svg" />
+	    <img src="https://img.shields.io/badge/JavaWeb-v1.0.0-brightgreen.svg" />
 	</a>
 	<a href="https://www.layui.com/">
         <img src="https://img.shields.io/badge/layui-2.4.5-blue.svg" alt="layui">
