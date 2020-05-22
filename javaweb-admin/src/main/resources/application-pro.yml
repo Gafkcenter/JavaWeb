@@ -15,7 +15,7 @@ spring:
     # 填写你数据库的url、登录名、密码和数据库名
     url: jdbc:mysql://47.99.90.120:3306/javaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=true&tinyInt1isBit=false
     username: root
-    password: llwx1qaz#$^
+    password:
     druid:
       # 连接池的配置信息
       # 初始连接数
