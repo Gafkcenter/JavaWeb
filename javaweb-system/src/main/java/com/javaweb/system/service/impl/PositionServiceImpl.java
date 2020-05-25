@@ -59,7 +59,7 @@ public class PositionServiceImpl extends BaseServiceImpl<PositionMapper, Positio
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Position> page = new Page<>(positionQuery.getPageIndex(), positionQuery.getPageSize());
+        IPage<Position> page = new Page<>(positionQuery.getPage(), positionQuery.getLimit());
         IPage<Position> data = positionMapper.selectPage(page, queryWrapper);
         List<Position> positionList = data.getRecords();
         List<PositionListVo> positionListVoList = new ArrayList<>();

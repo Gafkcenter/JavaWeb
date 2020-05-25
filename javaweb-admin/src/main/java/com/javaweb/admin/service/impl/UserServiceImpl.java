@@ -78,7 +78,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<User> page = new Page<>(userQuery.getPageIndex(), userQuery.getPageSize());
+        IPage<User> page = new Page<>(userQuery.getPage(), userQuery.getLimit());
         IPage<User> data = userMapper.selectPage(page, queryWrapper);
         List<User> userList = data.getRecords();
         List<UserListVo> userListVoList = new ArrayList<>();

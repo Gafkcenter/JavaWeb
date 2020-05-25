@@ -62,7 +62,7 @@ public class SmsLogServiceImpl extends BaseServiceImpl<SmsLogMapper, SmsLog> imp
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<SmsLog> page = new Page<>(smsLogQuery.getPageIndex(), smsLogQuery.getPageSize());
+        IPage<SmsLog> page = new Page<>(smsLogQuery.getPage(), smsLogQuery.getLimit());
         IPage<SmsLog> data = smsLogMapper.selectPage(page, queryWrapper);
         List<SmsLog> smsLogList = data.getRecords();
         List<SmsLogListVo> smsLogListVoList = new ArrayList<>();

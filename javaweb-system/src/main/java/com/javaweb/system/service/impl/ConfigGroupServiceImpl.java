@@ -54,7 +54,7 @@ public class ConfigGroupServiceImpl extends BaseServiceImpl<ConfigGroupMapper, C
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<ConfigGroup> page = new Page<>(configGroupQuery.getPageIndex(), configGroupQuery.getPageSize());
+        IPage<ConfigGroup> page = new Page<>(configGroupQuery.getPage(), configGroupQuery.getLimit());
         IPage<ConfigGroup> data = configGroupMapper.selectPage(page, queryWrapper);
         List<ConfigGroup> configGroupList = data.getRecords();
         List<ConfigGroupListVo> configGroupListVoList = new ArrayList<>();

@@ -65,7 +65,7 @@ public class LayoutServiceImpl extends BaseServiceImpl<LayoutMapper, Layout> imp
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Layout> page = new Page<>(layoutQuery.getPageIndex(), layoutQuery.getPageSize());
+        IPage<Layout> page = new Page<>(layoutQuery.getPage(), layoutQuery.getLimit());
         IPage<Layout> data = layoutMapper.selectPage(page, queryWrapper);
         List<Layout> layoutList = data.getRecords();
         List<LayoutListVo> layoutListVoList = new ArrayList<>();

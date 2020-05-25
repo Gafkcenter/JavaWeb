@@ -66,7 +66,7 @@ public class ConfigServiceImpl extends BaseServiceImpl<ConfigMapper, Config> imp
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Config> page = new Page<>(configQuery.getPageIndex(), configQuery.getPageSize());
+        IPage<Config> page = new Page<>(configQuery.getPage(), configQuery.getLimit());
         IPage<Config> data = configMapper.selectPage(page, queryWrapper);
         List<Config> configList = data.getRecords();
         List<ConfigListVo> configListVoList = new ArrayList<>();

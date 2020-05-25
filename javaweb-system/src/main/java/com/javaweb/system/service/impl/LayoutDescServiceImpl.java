@@ -58,7 +58,7 @@ public class LayoutDescServiceImpl extends BaseServiceImpl<LayoutDescMapper, Lay
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<LayoutDesc> page = new Page<>(layoutDescQuery.getPageIndex(), layoutDescQuery.getPageSize());
+        IPage<LayoutDesc> page = new Page<>(layoutDescQuery.getPage(), layoutDescQuery.getLimit());
         IPage<LayoutDesc> data = layoutDescMapper.selectPage(page, queryWrapper);
         List<LayoutDesc> layoutDescList = data.getRecords();
         List<LayoutDescListVo> layoutDescListVoList = new ArrayList<>();

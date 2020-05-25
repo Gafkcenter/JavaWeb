@@ -61,7 +61,7 @@ public class ProductCategoryServiceImpl extends BaseServiceImpl<ProductCategoryM
         queryWrapper.orderByDesc("sort");
 
         // 查询数据
-        IPage<ProductCategory> page = new Page<>(productCategoryQuery.getPageIndex(), productCategoryQuery.getPageSize());
+        IPage<ProductCategory> page = new Page<>(productCategoryQuery.getPage(), productCategoryQuery.getLimit());
         IPage<ProductCategory> data = productCategoryMapper.selectPage(page, queryWrapper);
         List<ProductCategory> productCategoryList = data.getRecords();
         List<ProductCategoryListVo> productCategoryListVoList = new ArrayList<>();

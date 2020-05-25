@@ -64,7 +64,7 @@ public class DepServiceImpl extends BaseServiceImpl<DepMapper, Dep> implements I
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Dep> page = new Page<>(depQuery.getPageIndex(), depQuery.getPageSize());
+        IPage<Dep> page = new Page<>(depQuery.getPage(), depQuery.getLimit());
         IPage<Dep> data = depMapper.selectPage(page, queryWrapper);
         List<Dep> depList = data.getRecords();
         List<DepListVo> depListVoList = new ArrayList<>();

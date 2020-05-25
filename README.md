@@ -99,10 +99,11 @@ JavaWeb采用LGPL-3.0开源协议
 ### Thymeleaf模板引擎页面拆分
 例如，把主页拆分成三部分，每个部分单独一个页面，更加便于维护
 ```
-<!-- 头部开始 -->
-<header th:replace="header.html"></header>
-<!-- 头部开始 -->
-
+<!DOCTYPE html>
+<html>
+<body>
+<!-- 引入头部 -->
+<header th:replace="./public/header :: header"></header>
 <!-- 正文开始 -->
 <div class="layui-fluid">
     <div class="layui-card">
@@ -112,10 +113,10 @@ JavaWeb采用LGPL-3.0开源协议
         </div>
     </div>
 </div>
-<!-- 脚部开始 -->
-<header th:replace="header.html"></header>
-<!-- 脚部开始 -->
-
+<!-- 引入脚部 -->
+<footer th:replace="./public/footer :: footer"></footer>
+</body>
+</html>
 ```
 以上是对整个页面进行的拆分，把公共部分抽离出来，子页面只需继承当前页面专心处理业务UI即可
 
@@ -335,6 +336,14 @@ layui.use(['func'], function () {
 
 
 ## 更新说明
+
+# 2020-05-25更新  
+1、【优化】优化布局模板的区域层级划分；
+
+2、【修复】解决列表数据分页失效的问题；
+
+3、【优化】优化代码生成器生成服务类文件；
+
 
 # 2020-05-20更新  
 1、【完成】主要完成登录日志模块的开发及线程处理；

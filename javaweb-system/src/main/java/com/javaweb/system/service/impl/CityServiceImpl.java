@@ -59,7 +59,7 @@ public class CityServiceImpl extends BaseServiceImpl<CityMapper, City> implement
         queryWrapper.orderByAsc("id");
 
         // 查询数据
-        IPage<City> page = new Page<>(cityQuery.getPageIndex(), cityQuery.getPageSize());
+        IPage<City> page = new Page<>(cityQuery.getPage(), cityQuery.getLimit());
         IPage<City> data = cityMapper.selectPage(page, queryWrapper);
         List<City> cityList = data.getRecords();
         List<CityListVo> cityListVoList = new ArrayList<>();

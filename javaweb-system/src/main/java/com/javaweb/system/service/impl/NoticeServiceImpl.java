@@ -71,7 +71,7 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, Notice> imp
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Notice> page = new Page<>(noticeQuery.getPageIndex(), noticeQuery.getPageSize());
+        IPage<Notice> page = new Page<>(noticeQuery.getPage(), noticeQuery.getLimit());
         IPage<Notice> data = noticeMapper.selectPage(page, queryWrapper);
         List<Notice> noticeList = data.getRecords();
         List<NoticeListVo> noticeListVoList = new ArrayList<>();

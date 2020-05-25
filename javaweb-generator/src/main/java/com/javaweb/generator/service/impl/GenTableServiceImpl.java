@@ -71,7 +71,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTableMapper, GenTabl
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<GenTable> page = new Page<>(genTableQuery.getPageIndex(), genTableQuery.getPageSize());
+        IPage<GenTable> page = new Page<>(genTableQuery.getPage(), genTableQuery.getLimit());
         IPage<GenTable> data = genTableMapper.selectPage(page, queryWrapper);
         List<GenTable> genTableList = data.getRecords();
         List<GenTableListVo> genTableListVoList = new ArrayList<>();

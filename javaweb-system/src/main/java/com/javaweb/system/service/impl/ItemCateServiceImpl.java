@@ -68,7 +68,7 @@ public class ItemCateServiceImpl extends BaseServiceImpl<ItemCateMapper, ItemCat
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<ItemCate> page = new Page<>(itemCateQuery.getPageIndex(), itemCateQuery.getPageSize());
+        IPage<ItemCate> page = new Page<>(itemCateQuery.getPage(), itemCateQuery.getLimit());
         IPage<ItemCate> data = itemCateMapper.selectPage(page, queryWrapper);
         List<ItemCate> itemCateList = data.getRecords();
         List<ItemCateListVo> itemCateListVoList = new ArrayList<>();

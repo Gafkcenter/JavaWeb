@@ -59,7 +59,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Role> page = new Page<>(roleQuery.getPageIndex(), roleQuery.getPageSize());
+        IPage<Role> page = new Page<>(roleQuery.getPage(), roleQuery.getLimit());
         IPage<Role> data = roleMapper.selectPage(page, queryWrapper);
         List<Role> roleList = data.getRecords();
         List<RoleListVo> roleListVoList = new ArrayList<>();

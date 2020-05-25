@@ -59,7 +59,7 @@ public class LevelServiceImpl extends BaseServiceImpl<LevelMapper, Level> implem
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Level> page = new Page<>(levelQuery.getPageIndex(), levelQuery.getPageSize());
+        IPage<Level> page = new Page<>(levelQuery.getPage(), levelQuery.getLimit());
         IPage<Level> data = levelMapper.selectPage(page, queryWrapper);
         List<Level> levelList = data.getRecords();
         List<LevelListVo> levelListVoList = new ArrayList<>();

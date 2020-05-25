@@ -1,7 +1,7 @@
 spring:
   profiles:
     # 指定执行环境
-    active: pro #@package.environment@
+    active: dev #@package.environment@
 
   # 服务模块
   devtools:

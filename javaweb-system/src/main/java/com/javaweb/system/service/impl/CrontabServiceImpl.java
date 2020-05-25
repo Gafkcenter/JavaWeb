@@ -59,7 +59,7 @@ public class CrontabServiceImpl extends BaseServiceImpl<CrontabMapper, Crontab> 
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Crontab> page = new Page<>(crontabQuery.getPageIndex(), crontabQuery.getPageSize());
+        IPage<Crontab> page = new Page<>(crontabQuery.getPage(), crontabQuery.getLimit());
         IPage<Crontab> data = crontabMapper.selectPage(page, queryWrapper);
         List<Crontab> crontabList = data.getRecords();
         List<CrontabListVo> crontabListVoList = new ArrayList<>();

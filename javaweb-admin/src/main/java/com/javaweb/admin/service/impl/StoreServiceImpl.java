@@ -73,7 +73,7 @@ public class StoreServiceImpl extends BaseServiceImpl<StoreMapper, Store> implem
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Store> page = new Page<>(storeQuery.getPageIndex(), storeQuery.getPageSize());
+        IPage<Store> page = new Page<>(storeQuery.getPage(), storeQuery.getLimit());
         IPage<Store> data = storeMapper.selectPage(page, queryWrapper);
         List<Store> storeList = data.getRecords();
         List<StoreListVo> storeListVoList = new ArrayList<>();

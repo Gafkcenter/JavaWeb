@@ -56,7 +56,7 @@ public class BrandCompanyServiceImpl extends BaseServiceImpl<BrandCompanyMapper,
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<BrandCompany> page = new Page<>(brandCompanyQuery.getPageIndex(), brandCompanyQuery.getPageSize());
+        IPage<BrandCompany> page = new Page<>(brandCompanyQuery.getPage(), brandCompanyQuery.getLimit());
         IPage<BrandCompany> data = brandCompanyMapper.selectPage(page, queryWrapper);
         List<BrandCompany> brandCompanyList = data.getRecords();
         List<BrandCompanyListVo> brandCompanyListVoList = new ArrayList<>();

@@ -62,7 +62,7 @@ public class MessageServiceImpl extends BaseServiceImpl<MessageMapper, Message> 
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Message> page = new Page<>(messageQuery.getPageIndex(), messageQuery.getPageSize());
+        IPage<Message> page = new Page<>(messageQuery.getPage(), messageQuery.getLimit());
         IPage<Message> data = messageMapper.selectPage(page, queryWrapper);
         List<Message> messageList = data.getRecords();
         List<MessageListVo> messageListVoList = new ArrayList<>();

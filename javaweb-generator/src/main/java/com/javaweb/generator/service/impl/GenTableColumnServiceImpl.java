@@ -81,7 +81,7 @@ public class GenTableColumnServiceImpl extends BaseServiceImpl<GenTableColumnMap
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<GenTableColumn> page = new Page<>(genTableColumnQuery.getPageIndex(), genTableColumnQuery.getPageSize());
+        IPage<GenTableColumn> page = new Page<>(genTableColumnQuery.getPage(), genTableColumnQuery.getLimit());
         IPage<GenTableColumn> data = genTableColumnMapper.selectPage(page, queryWrapper);
         List<GenTableColumn> genTableColumnList = data.getRecords();
         List<GenTableColumnListVo> genTableColumnListVoList = new ArrayList<>();

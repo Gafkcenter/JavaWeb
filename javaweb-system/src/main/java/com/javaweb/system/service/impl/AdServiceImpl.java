@@ -69,7 +69,7 @@ public class AdServiceImpl extends BaseServiceImpl<AdMapper, Ad> implements IAdS
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Ad> page = new Page<>(adQuery.getPageIndex(), adQuery.getPageSize());
+        IPage<Ad> page = new Page<>(adQuery.getPage(), adQuery.getLimit());
         IPage<Ad> data = adMapper.selectPage(page, queryWrapper);
         List<Ad> adList = data.getRecords();
         List<AdListVo> adListVoList = new ArrayList<>();

@@ -54,7 +54,7 @@ public class DicTypeServiceImpl extends BaseServiceImpl<DicTypeMapper, DicType> 
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<DicType> page = new Page<>(dicTypeQuery.getPageIndex(), dicTypeQuery.getPageSize());
+        IPage<DicType> page = new Page<>(dicTypeQuery.getPage(), dicTypeQuery.getLimit());
         IPage<DicType> data = dicTypeMapper.selectPage(page, queryWrapper);
         List<DicType> dicTypeList = data.getRecords();
         List<DicTypeListVo> dicTypeListVoList = new ArrayList<>();

@@ -66,7 +66,7 @@ public class AdSortServiceImpl extends BaseServiceImpl<AdSortMapper, AdSort> imp
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<AdSort> page = new Page<>(adSortQuery.getPageIndex(), adSortQuery.getPageSize());
+        IPage<AdSort> page = new Page<>(adSortQuery.getPage(), adSortQuery.getLimit());
         IPage<AdSort> data = adSortMapper.selectPage(page, queryWrapper);
         List<AdSort> adSortList = data.getRecords();
         List<AdSortListVo> adSortListVoList = new ArrayList<>();

@@ -80,7 +80,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implem
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Admin> page = new Page<>(adminQuery.getPageIndex(), adminQuery.getPageSize());
+        IPage<Admin> page = new Page<>(adminQuery.getPage(), adminQuery.getLimit());
         IPage<Admin> data = adminMapper.selectPage(page, queryWrapper);
         List<Admin> adminList = data.getRecords();
         List<AdminListVo> adminListVoList = new ArrayList<>();

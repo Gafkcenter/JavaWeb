@@ -61,7 +61,7 @@ public class ProductTagsServiceImpl extends BaseServiceImpl<ProductTagsMapper, P
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<ProductTags> page = new Page<>(productTagsQuery.getPageIndex(), productTagsQuery.getPageSize());
+        IPage<ProductTags> page = new Page<>(productTagsQuery.getPage(), productTagsQuery.getLimit());
         IPage<ProductTags> data = productTagsMapper.selectPage(page, queryWrapper);
         List<ProductTags> productTagsList = data.getRecords();
         List<ProductTagsListVo> productTagsListVoList = new ArrayList<>();

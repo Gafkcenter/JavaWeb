@@ -59,7 +59,7 @@ public class DicServiceImpl extends BaseServiceImpl<DicMapper, Dic> implements I
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Dic> page = new Page<>(dicQuery.getPageIndex(), dicQuery.getPageSize());
+        IPage<Dic> page = new Page<>(dicQuery.getPage(), dicQuery.getLimit());
         IPage<Dic> data = dicMapper.selectPage(page, queryWrapper);
         List<Dic> dicList = data.getRecords();
         List<DicListVo> dicListVoList = new ArrayList<>();

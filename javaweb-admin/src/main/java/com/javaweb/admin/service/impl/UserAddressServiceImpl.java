@@ -58,7 +58,7 @@ public class UserAddressServiceImpl extends BaseServiceImpl<UserAddressMapper, U
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<UserAddress> page = new Page<>(userAddressQuery.getPageIndex(), userAddressQuery.getPageSize());
+        IPage<UserAddress> page = new Page<>(userAddressQuery.getPage(), userAddressQuery.getLimit());
         IPage<UserAddress> data = userAddressMapper.selectPage(page, queryWrapper);
         List<UserAddress> userAddressList = data.getRecords();
         List<UserAddressListVo> userAddressListVoList = new ArrayList<>();

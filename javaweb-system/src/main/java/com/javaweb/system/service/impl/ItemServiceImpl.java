@@ -65,7 +65,7 @@ public class ItemServiceImpl extends BaseServiceImpl<ItemMapper, Item> implement
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Item> page = new Page<>(itemQuery.getPageIndex(), itemQuery.getPageSize());
+        IPage<Item> page = new Page<>(itemQuery.getPage(), itemQuery.getLimit());
         IPage<Item> data = itemMapper.selectPage(page, queryWrapper);
         List<Item> itemList = data.getRecords();
         List<ItemListVo> itemListVoList = new ArrayList<>();

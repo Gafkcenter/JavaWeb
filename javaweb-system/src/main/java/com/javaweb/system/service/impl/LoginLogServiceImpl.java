@@ -62,7 +62,7 @@ public class LoginLogServiceImpl extends BaseServiceImpl<LoginLogMapper, LoginLo
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<LoginLog> page = new Page<>(loginLogQuery.getPageIndex(), loginLogQuery.getPageSize());
+        IPage<LoginLog> page = new Page<>(loginLogQuery.getPage(), loginLogQuery.getLimit());
         IPage<LoginLog> data = loginLogMapper.selectPage(page, queryWrapper);
         List<LoginLog> loginLogList = data.getRecords();
         List<LoginLogListVo> loginLogListVoList = new ArrayList<>();

@@ -65,7 +65,7 @@ public class OperLogServiceImpl extends BaseServiceImpl<OperLogMapper, OperLog> 
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<OperLog> page = new Page<>(operLogQuery.getPageIndex(), operLogQuery.getPageSize());
+        IPage<OperLog> page = new Page<>(operLogQuery.getPage(), operLogQuery.getLimit());
         IPage<OperLog> data = operLogMapper.selectPage(page, queryWrapper);
         List<OperLog> operLogList = data.getRecords();
         List<OperLogListVo> operLogListVoList = new ArrayList<>();

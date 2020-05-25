@@ -49,7 +49,7 @@ public class AdminRoleServiceImpl extends BaseServiceImpl<AdminRoleMapper, Admin
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<AdminRole> page = new Page<>(adminRoleQuery.getPageIndex(), adminRoleQuery.getPageSize());
+        IPage<AdminRole> page = new Page<>(adminRoleQuery.getPage(), adminRoleQuery.getLimit());
         IPage<AdminRole> data = adminRoleMapper.selectPage(page, queryWrapper);
         List<AdminRole> adminRoleList = data.getRecords();
         List<AdminRoleListVo> adminRoleListVoList = new ArrayList<>();

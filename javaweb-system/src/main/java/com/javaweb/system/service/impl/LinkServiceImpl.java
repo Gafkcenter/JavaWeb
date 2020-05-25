@@ -80,7 +80,7 @@ public class LinkServiceImpl extends BaseServiceImpl<LinkMapper, Link> implement
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<Link> page = new Page<>(linkQuery.getPageIndex(), linkQuery.getPageSize());
+        IPage<Link> page = new Page<>(linkQuery.getPage(), linkQuery.getLimit());
         IPage<Link> data = linkMapper.selectPage(page, queryWrapper);
         List<Link> linkList = data.getRecords();
         List<LinkListVo> linkListVoList = new ArrayList<>();

@@ -49,7 +49,7 @@ public class RoleDeptServiceImpl extends BaseServiceImpl<RoleDeptMapper, RoleDep
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<RoleDept> page = new Page<>(roleDeptQuery.getPageIndex(), roleDeptQuery.getPageSize());
+        IPage<RoleDept> page = new Page<>(roleDeptQuery.getPage(), roleDeptQuery.getLimit());
         IPage<RoleDept> data = roleDeptMapper.selectPage(page, queryWrapper);
         List<RoleDept> roleDeptList = data.getRecords();
         List<RoleDeptListVo> roleDeptListVoList = new ArrayList<>();

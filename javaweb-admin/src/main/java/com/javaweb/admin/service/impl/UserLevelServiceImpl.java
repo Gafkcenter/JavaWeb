@@ -54,7 +54,7 @@ public class UserLevelServiceImpl extends BaseServiceImpl<UserLevelMapper, UserL
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<UserLevel> page = new Page<>(userLevelQuery.getPageIndex(), userLevelQuery.getPageSize());
+        IPage<UserLevel> page = new Page<>(userLevelQuery.getPage(), userLevelQuery.getLimit());
         IPage<UserLevel> data = userLevelMapper.selectPage(page, queryWrapper);
         List<UserLevel> userLevelList = data.getRecords();
         List<UserLevelListVo> userLevelListVoList = new ArrayList<>();

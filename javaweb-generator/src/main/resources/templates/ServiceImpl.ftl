@@ -87,7 +87,7 @@ public class ${entityName}ServiceImpl extends BaseServiceImpl<${entityName}Mappe
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<${entityName}> page = new Page<>(${entityName?uncap_first}Query.getPageIndex(), ${entityName?uncap_first}Query.getPageSize());
+        IPage<${entityName}> page = new Page<>(${entityName?uncap_first}Query.getPage(), ${entityName?uncap_first}Query.getLimit());
         IPage<${entityName}> data = ${entityName?uncap_first}Mapper.selectPage(page, queryWrapper);
         List<${entityName}> ${entityName?uncap_first}List = data.getRecords();
         List<${entityName}ListVo> ${entityName?uncap_first}ListVoList = new ArrayList<>();

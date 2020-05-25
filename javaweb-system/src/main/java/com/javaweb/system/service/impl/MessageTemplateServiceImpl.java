@@ -63,7 +63,7 @@ public class MessageTemplateServiceImpl extends BaseServiceImpl<MessageTemplateM
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<MessageTemplate> page = new Page<>(messageTemplateQuery.getPageIndex(), messageTemplateQuery.getPageSize());
+        IPage<MessageTemplate> page = new Page<>(messageTemplateQuery.getPage(), messageTemplateQuery.getLimit());
         IPage<MessageTemplate> data = messageTemplateMapper.selectPage(page, queryWrapper);
         List<MessageTemplate> messageTemplateList = data.getRecords();
         List<MessageTemplateListVo> messageTemplateListVoList = new ArrayList<>();

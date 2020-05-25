@@ -56,7 +56,7 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuMapper, RoleMen
         queryWrapper.orderByDesc("id");
 
         // 查询数据
-        IPage<RoleMenu> page = new Page<>(roleMenuQuery.getPageIndex(), roleMenuQuery.getPageSize());
+        IPage<RoleMenu> page = new Page<>(roleMenuQuery.getPage(), roleMenuQuery.getLimit());
         IPage<RoleMenu> data = roleMenuMapper.selectPage(page, queryWrapper);
         List<RoleMenu> roleMenuList = data.getRecords();
         List<RoleMenuListVo> roleMenuListVoList = new ArrayList<>();
