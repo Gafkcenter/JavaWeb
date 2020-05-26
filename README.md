@@ -289,6 +289,10 @@ layui.use(['func'], function () {
 
 ## 效果图展示
 
+#### 0、框架结构
+ ![项目结构](http://images.javaweb.rxthink.cn/demo/15.png)
+
+
 #### 1、锁屏
  ![锁屏](http://images.javaweb.rxthink.cn/demo/1.png)
  
