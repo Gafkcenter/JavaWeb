@@ -64,7 +64,7 @@ public class CodeGenerateUtils {
      * 数据库连接池
      */
     @Value("${spring.datasource.url}")
-    private String url = "jdbc:mysql://47.99.90.120:3306/javaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=true&tinyInt1isBit=false";
+    private String url = "jdbc:mysql://127.0.0.1:3306/javaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=true&tinyInt1isBit=false";
     /**
      * 数据库用户名
      */
@@ -74,7 +74,7 @@ public class CodeGenerateUtils {
      * 数据库密码
      */
     @Value("${spring.datasource.password}")
-    private String password = "llwx1qaz#$^";
+    private String password = "";
     /**
      * 数据库驱动
      */
