@@ -30,6 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 
+/doc/
 /node_modules/
 /src/
 package.json
