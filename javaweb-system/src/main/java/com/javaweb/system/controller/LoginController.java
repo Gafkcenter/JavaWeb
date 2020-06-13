@@ -46,7 +46,6 @@ public class LoginController {
     @ResponseBody
     @PostMapping("/login")
     public JsonResult login(HttpServletRequest request, @RequestBody LoginDto loginDto) {
-        ShiroUtils.logout();
         return loginService.login(request, loginDto);
     }
 

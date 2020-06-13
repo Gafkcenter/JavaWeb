@@ -1,0 +1,64 @@
+<html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+	<form class="layui-form model-form" action="">
+		<input name="id" type="hidden" th:value="${info['id']}?:0">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">模板名称：</label>
+				<div class="layui-input-inline">
+					<input name="name" th:value="${info['name']}" lay-verify="required" autocomplete="off" placeholder="请输入模板名称" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">计费类型：</label>
+				<div class="layui-input-inline">
+					<widget:switchCheck name="chargeType" data="按重量|按件数" th:value="${info['chargeType']} ?: 1"/>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">首重(KG)：</label>
+				<div class="layui-input-inline">
+					<input name="firstWeight" th:value="${info['firstWeight']}" lay-verify="required" autocomplete="off" placeholder="请输入首重（KG）" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">首费(元)：</label>
+				<div class="layui-input-inline">
+					<input name="firstFee" th:value="${info['firstFee']}" lay-verify="required" autocomplete="off" placeholder="请输入首费（元）" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">后重量(KG)：</label>
+				<div class="layui-input-inline">
+					<input name="continueWeight" th:value="${info['continueWeight']}" lay-verify="required" autocomplete="off" placeholder="请输入后重量" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">后费用(元)：</label>
+				<div class="layui-input-inline">
+					<input name="continueFee" th:value="${info['continueFee']}" lay-verify="required" autocomplete="off" placeholder="请输入后费用" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">目的地：</label>
+				<div class="layui-input-inline">
+					<input name="dest" th:value="${info['dest']}" lay-verify="required" autocomplete="off" placeholder="请输入目的地（省、市）" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">排序号：</label>
+				<div class="layui-input-inline">
+					<input name="sort" th:value="${info['sort']}" lay-verify="required|number" autocomplete="off" placeholder="请输入排序号" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<widget:btnSubmit name="submit|立即保存,close|关闭"/>
+	</form>
+</div>
+</html>

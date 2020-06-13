@@ -337,9 +337,30 @@ layui.use(['func'], function () {
  
 #### 15、系统配置
  ![系统配置](http://images.javaweb.rxthink.cn/demo/14.png)
+ 
+#### 16、操作日志
+![操作日志](http://images.javaweb.rxthink.cn/demo/16.png)
+
+#### 17、商品信息
+![SKU设置](http://images.javaweb.rxthink.cn/demo/17.png)
+
+#### 18、商品SKU
+![SKU设置](http://images.javaweb.rxthink.cn/demo/18.png)
 
 
 ## 更新说明
+
+# 2020-06-13新增 
+1、【新增】新增商品管理商品类型模块；
+
+2、【新增】新增商品管理商品属性模块；
+
+3、【新增】新增商品管理商品属性值模块；
+
+4、【新增】新增商品管理模块；
+
+5、【新增】新增商品SKU设置模块；
+
 
 # 2020-05-25更新  
 1、【优化】优化布局模板的区域层级划分；

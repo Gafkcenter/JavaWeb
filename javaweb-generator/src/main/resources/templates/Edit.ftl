@@ -48,9 +48,9 @@
 		</div>
 		<#elseif model.hasColumnCommentValue = true>
 		<div class="layui-inline">
-			<label class="layui-form-label">${model.columnCommentName!}：</label>
+			<label class="layui-form-label">${model.columnCommentName}：</label>
 			<div class="layui-input-inline">
-				<widget:singleSelect name="${model.changeColumnName?uncap_first}|1|${model.columnCommentName!}|name|id" data="${model.columnValue}" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}?:${model.columnDefaultValue}"/>
+				<widget:singleSelect name="${model.changeColumnName?uncap_first}|1|${model.columnCommentName}|name|id" data="${model.columnValue}" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}?:${model.columnDefaultValue}"/>
 			</div>
 		</div>
 		<#else>
@@ -80,7 +80,7 @@
 		</div>
 		<#else>
 		<div class="layui-form-item">
-			<label class="layui-form-label">${model.columnCommentName!}：</label>
+			<label class="layui-form-label">${model.columnCommentName}：</label>
 			<div class="layui-input-block">
 				<widget:singleSelect name="${model.changeColumnName?uncap_first}|1|${model.columnCommentName}|name|id" data="${model.columnValue}" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}?:${model.columnDefaultValue}"/>
 			</div>
@@ -135,12 +135,21 @@
 				</div>
 			</div>
 			<#elseif model[0].hasColumnCommentValue = true>
-			<div class="layui-inline">
-				<label class="layui-form-label">${model[0].columnCommentName!}：</label>
-				<div class="layui-input-inline">
-					<widget:singleSelect name="${model[0].changeColumnName?uncap_first}|1|${model[0].columnCommentName!}|name|id" data="${model[0].columnValue}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}?:${model[0].columnDefaultValue}"/>
+				<#if model[1].columnType = 'VARCHAR'>
+				<div class="layui-inline">
+					<label class="layui-form-label">${model[0].columnCommentName}：</label>
+					<div class="layui-input-inline">
+						<widget:checkboxSingleSelect name="${model[0].changeColumnName?uncap_first}|name|id" data="${model[0].columnValue}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}"/>
+					</div>
 				</div>
-			</div>
+				<#else>
+				<div class="layui-inline">
+					<label class="layui-form-label">${model[0].columnCommentName}：</label>
+					<div class="layui-input-inline">
+						<widget:singleSelect name="${model[0].changeColumnName?uncap_first}|1|${model[0].columnCommentName}|name|id" data="${model[0].columnValue}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}?:${model[0].columnDefaultValue}"/>
+					</div>
+				</div>
+				</#if>
 			<#else>
 			<div class="layui-inline">
 				<label class="layui-form-label">${model[0].columnComment}：</label>
@@ -168,9 +177,9 @@
 			</div>
 		<#else>
 			<div class="layui-inline">
-				<label class="layui-form-label">${model[0].columnCommentName!}：</label>
+				<label class="layui-form-label">${model[0].columnCommentName}：</label>
 				<div class="layui-input-inline">
-					<widget:singleSelect name="${model[0].changeColumnName?uncap_first}|1|${model[0].columnCommentName!}|name|id" data="${model[0].columnValue}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}?:${model[0].columnDefaultValue}"/>
+					<widget:singleSelect name="${model[0].changeColumnName?uncap_first}|1|${model[0].columnCommentName}|name|id" data="${model[0].columnValue}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}?:${model[0].columnDefaultValue}"/>
 				</div>
 			</div>
 		</#if>
@@ -180,6 +189,14 @@
 				<label class="layui-form-label">${model[0].columnComment}：</label>
 				<div class="layui-input-inline">
 					<input name="${model[0].changeColumnName?uncap_first}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}" lay-verify="required|number" autocomplete="off" placeholder="请输入${model[0].columnComment}" class="layui-input" type="text">
+				</div>
+			</div>
+		</#if>
+		<#if (model[0].columnType = 'DECIMAL UNSIGNED' || model[0].columnType = 'DECIMAL')>
+			<div class="layui-inline">
+				<label class="layui-form-label">${model[0].columnComment}：</label>
+				<div class="layui-input-inline">
+					<input name="${model[0].changeColumnName?uncap_first}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}" lay-verify="required" autocomplete="off" placeholder="请输入${model[0].columnComment}" class="layui-input" type="text">
 				</div>
 			</div>
 		</#if>
@@ -213,12 +230,21 @@
 				</div>
 			</div>
 		<#elseif model[1].hasColumnCommentValue = true>
+			<#if model[1].columnType = 'VARCHAR'>
 			<div class="layui-inline">
-				<label class="layui-form-label">${model[1].columnCommentName!}：</label>
+				<label class="layui-form-label">${model[1].columnCommentName}：</label>
 				<div class="layui-input-inline">
-					<widget:singleSelect name="${model[1].changeColumnName?uncap_first}|1|${model[1].columnCommentName!}|name|id" data="${model[1].columnValue}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}?:${model[1].columnDefaultValue}"/>
+					<widget:checkboxSingleSelect name="${model[1].changeColumnName?uncap_first}|name|id" data="${model[1].columnValue}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}"/>
 				</div>
 			</div>
+			<#else>
+			<div class="layui-inline">
+				<label class="layui-form-label">${model[1].columnCommentName}：</label>
+				<div class="layui-input-inline">
+					<widget:singleSelect name="${model[1].changeColumnName?uncap_first}|1|${model[1].columnCommentName}|name|id" data="${model[1].columnValue}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}?:${model[1].columnDefaultValue}"/>
+				</div>
+			</div>
+			</#if>
 		<#else>
 			<div class="layui-inline">
 				<label class="layui-form-label">${model[1].columnComment}：</label>
@@ -246,9 +272,9 @@
 			</div>
 		<#else>
 			<div class="layui-inline">
-				<label class="layui-form-label">${model[1].columnCommentName!}：</label>
+				<label class="layui-form-label">${model[1].columnCommentName}：</label>
 				<div class="layui-input-inline">
-					<widget:singleSelect name="${model[1].changeColumnName?uncap_first}|1|${model[1].columnCommentName!}|name|id" data="${model[1].columnValue}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}?:${model[1].columnDefaultValue}"/>
+					<widget:singleSelect name="${model[1].changeColumnName?uncap_first}|1|${model[1].columnCommentName}|name|id" data="${model[1].columnValue}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}?:${model[1].columnDefaultValue}"/>
 				</div>
 			</div>
 		</#if>
@@ -258,6 +284,14 @@
 				<label class="layui-form-label">${model[1].columnComment}：</label>
 				<div class="layui-input-inline">
 					<input name="${model[1].changeColumnName?uncap_first}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}" lay-verify="required|number" autocomplete="off" placeholder="请输入${model[1].columnComment}" class="layui-input" type="text">
+				</div>
+			</div>
+		</#if>
+		<#if (model[1].columnType = 'DECIMAL UNSIGNED' || model[1].columnType = 'DECIMAL')>
+			<div class="layui-inline">
+				<label class="layui-form-label">${model[1].columnComment}：</label>
+				<div class="layui-input-inline">
+					<input name="${model[1].changeColumnName?uncap_first}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}" lay-verify="required" autocomplete="off" placeholder="请输入${model[1].columnComment}" class="layui-input" type="text">
 				</div>
 			</div>
 		</#if>

@@ -22,7 +22,6 @@
         <module>javaweb-system</module>
         <module>javaweb-admin</module>
         <module>javaweb-shiro</module>
-        <module>javaweb-web</module>
     </modules>
 
     <properties>
@@ -73,11 +72,6 @@
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-shiro</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.javaweb</groupId>
-                <artifactId>javaweb-web</artifactId>
                 <version>${version}</version>
             </dependency>
 

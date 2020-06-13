@@ -4,7 +4,7 @@ server:
 #  servlet:
 #    # 项目的前缀名
 #    context-path: /javaweb
-  IMAGE_URL: http://localhost:9010/
+  IMAGE_URL: http://localhost:9010
 
 spring:
   # 配置数据源
@@ -193,7 +193,7 @@ file:
   #静态资源对外暴露的访问路径
   staticAccessPath: /**
   #静态资源实际存储路径
-  uploadFolder: D:\JavaWeb\JavaWeb\uploads\
+  uploadFolder: E:\JavaWeb\JavaWeb\uploads\
 
 # Shiro
 shiro:

@@ -1,0 +1,143 @@
+<form th:fragment="promotionForm" class="layui-form model-form" style="min-width: 750px;margin: 0 auto;padding: 40px 30px 0 0;">
+	<input name="id" type="hidden" th:value="${info['id']}?:0">
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">赠送积分：</label>
+			<div class="layui-input-inline">
+				<input name="giftIntegral" th:value="${info['giftIntegral']}" lay-verify="required|number" autocomplete="off" placeholder="请输入赠送的积分" class="layui-input" type="text">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">赠成长值：</label>
+			<div class="layui-input-inline">
+				<input name="giftGrowth" th:value="${info['giftGrowth']}" lay-verify="required|number" autocomplete="off" placeholder="请输入赠送的成长值" class="layui-input" type="text">
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">限制积分：</label>
+			<div class="layui-input-inline">
+				<input name="useIntegralLimit" th:value="${info['useIntegralLimit']}" lay-verify="required|number" autocomplete="off" placeholder="请输入限制使用的积分数" class="layui-input" type="text">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">审核状态：</label>
+			<div class="layui-input-inline">
+				<widget:singleSelect name="verifyStatus|1|审核状态|name|id" th:data="${PRODUCT_VERIFYSTATUS_LIST}" th:value="${info['verifyStatus']}?:2"/>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">销量：</label>
+			<div class="layui-input-inline">
+				<input name="sales" th:value="${info['sales']}" lay-verify="required|number" autocomplete="off" placeholder="请输入销量" class="layui-input" type="text">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">是否推荐：</label>
+			<div class="layui-input-inline">
+				<widget:switchCheck name="isRecommand" data="是|否" th:value="${info['isRecommand']} ?: 2"/>
+			</div>
+		</div>
+
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">是否新品：</label>
+			<div class="layui-input-inline">
+				<widget:switchCheck name="isNew" data="是|否" th:value="${info['isNew']} ?: 2"/>
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">是否热卖：</label>
+			<div class="layui-input-inline">
+				<widget:switchCheck name="isHot" data="是|否" th:value="${info['isHot']} ?: 2"/>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">预告商品：</label>
+			<div class="layui-input-inline">
+				<widget:switchCheck name="isPreview" data="是|否" th:value="${info['isPreview']} ?: 2"/>
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">上架状态：</label>
+			<div class="layui-input-inline">
+				<widget:switchCheck name="status" data="已上架|已下架" th:value="${info['status']} ?: 1"/>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">商品相册：</label>
+		<widget:uploadMultipleImage name="image" th:value="${info['image']}" size="90x90" title="相册" tips="450x450"/>
+	</div>
+	<div class="layui-form-item" style="width: 625px;">
+		<label class="layui-form-label">关键词：</label>
+		<div class="layui-input-block">
+			<input name="keywords" th:value="${info['keywords']}" lay-verify="required" autocomplete="off" placeholder="请输入关键词" class="layui-input" type="text">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">产品服务：</label>
+		<widget:checkboxSingleSelect name="service|name|id" data="1=无忧退货,2=快速退款,3=免费包邮" th:value="${info['service']}"/>
+	</div>
+	<div class="layui-form-item" style="width: 625px;">
+		<label class="layui-form-label">商品备注：</label>
+		<div class="layui-input-block">
+			<textarea name="note" placeholder="请输入商品备注" class="layui-textarea" th:text="${info['note']}"></textarea>
+		</div>
+	</div>
+	<div class="layui-tab layui-tab-brief" style="margin: 0px 110px !important;">
+		<ul class="layui-tab-title">
+			<li th:each="item,itemStat:${PRODUCT_PROMOTIONTYPE_LIST}" th:class="${itemStat.current.key == 1 ? 'layui-this' : ''}" th:text="${itemStat.current.value}"></li>
+		</ul>
+		<div class="layui-tab-content" style="height: 100px;width:750px">
+			<div th:class="'layui-tab-item ' + ${info['promotionType'] == 0 ? 'layui-show' : ''}"></div>
+			<div th:class="'layui-tab-item ' + ${info['promotionType'] == 1 ? 'layui-show' : ''}">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">开始时间：</label>
+						<div class="layui-input-inline">
+							<widget:dateSelect name="promotionStartTime|datetime|请选择促销开始时间" th:value="${info['promotionStartTime']}"/>
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">结束时间：</label>
+						<div class="layui-input-inline">
+							<widget:dateSelect name="promotionEndTime|datetime|请选择促销结束时间" th:value="${info['promotionEndTime']}"/>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">促销价格：</label>
+						<div class="layui-input-inline">
+							<input name="promotionPrice" th:value="${info['promotionPrice']}" lay-verify="required" autocomplete="off" placeholder="请输入促销价格" class="layui-input" type="text">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">限购数量：</label>
+						<div class="layui-input-inline">
+							<input name="promotionPerLimit" th:value="${info['promotionPerLimit']}" lay-verify="required|number" autocomplete="off" placeholder="请输入活动限购数量" class="layui-input" type="text">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:class="'layui-tab-item ' + ${info['promotionType'] == 2 ? 'layui-show' : ''}"></div>
+			<div th:class="'layui-tab-item ' + ${info['promotionType'] == 3 ? 'layui-show' : ''}"></div>
+			<div th:class="'layui-tab-item ' + ${info['promotionType'] == 4 ? 'layui-show' : ''}"></div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button type="button" class="layui-btn layui-btn-primary" data-steps="prev"> 上一步，填写商品信息
+			</button>
+			<button class="layui-btn" lay-filter="promotionInfoSubmit" lay-submit>&emsp;下一步，填写商品属性&emsp;
+			</button>
+		</div>
+	</div>
+</form>

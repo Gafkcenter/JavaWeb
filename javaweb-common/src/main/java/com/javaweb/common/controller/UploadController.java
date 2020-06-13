@@ -38,4 +38,28 @@ public class UploadController extends BaseController {
         return uploadService.uploadImage(request, name);
     }
 
+    /**
+     * 上传文件
+     *
+     * @param request
+     * @param name    目录名
+     * @return
+     */
+    @PostMapping("/uploadFile")
+    public JsonResult uploadFile(HttpServletRequest request, String name) {
+        return uploadService.uploadFile(request, name);
+    }
+
+    /**
+     * 上传图片
+     *
+     * @param request 网络请求
+     * @param name    目录名
+     * @return
+     */
+    @PostMapping("/kindeditorImage")
+    public String kindeditorImage(HttpServletRequest request, String name) {
+        return uploadService.kindeditorImage(request, name);
+    }
+
 }

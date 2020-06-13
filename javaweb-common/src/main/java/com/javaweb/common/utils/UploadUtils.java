@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.util.*;
 /**
  * 上传文件工具类
  */
+@Component
 public class UploadUtils {
     // 表单字段常量
     public static final String FORM_FIELDS = "form_fields";
@@ -38,7 +40,9 @@ public class UploadUtils {
     // 文件保存目录url
     private String saveUrl;
     // 文件最终的url包括文件名
-    private List<String> fileUrl = new ArrayList<>();
+    private List<String> fileUrlList = new ArrayList<>();
+    // 上传文件原名
+    private List<String> fileNameList = new ArrayList<>();
 
     /**
      * 构造函数
@@ -78,7 +82,8 @@ public class UploadUtils {
         // 返回结果
         Map<String, Object> result = new HashMap<>();
         result.put("error", error);
-        result.put("image", this.fileUrl);
+        result.put("image", this.fileUrlList);
+        result.put("name", this.fileNameList);
         return result;
     }
 
@@ -121,9 +126,9 @@ public class UploadUtils {
             errorInfo = "目录名不正确";
         } else {
             // 上传路径
-            uploadPath += dirName + "/" + name + "/";
+            uploadPath = UploadFileConfig.uploadFolder + dirName + "/" + name + "/";
             // 保存目录Url
-            saveUrl = dirName + "/" + name + "/";
+            saveUrl = "/" + dirName + "/" + name + "/";
 
             // 创建一级目录
             File saveDirFile = new File(uploadPath);
@@ -235,9 +240,11 @@ public class UploadUtils {
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
             String newFileName = df.format(new Date()) + new Random().nextInt(1000) + "." + fileExt;
 
+            // 新增文件原名数组(带后缀)
+            fileNameList.add(fileName);
             // 新增值文件数组
             String filePath = saveUrl + newFileName;
-            fileUrl.add(filePath);
+            fileUrlList.add(filePath);
 
             // 写入文件
             try {
@@ -296,11 +303,11 @@ public class UploadUtils {
         this.tempPath = tempPath;
     }
 
-    public List getFileUrl() {
-        return fileUrl;
+    public List getfileUrlList() {
+        return fileUrlList;
     }
 
-    public void setFileUrl(List fileUrl) {
-        this.fileUrl = fileUrl;
+    public void setfileUrlList(List fileUrlList) {
+        this.fileUrlList = fileUrlList;
     }
 }

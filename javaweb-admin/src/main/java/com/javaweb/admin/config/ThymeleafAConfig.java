@@ -1,9 +1,6 @@
 package com.javaweb.admin.config;
 
-import com.javaweb.admin.constant.BrandConstant;
-import com.javaweb.admin.constant.ProductCategoryConstant;
-import com.javaweb.admin.constant.ProductTagsConstant;
-import com.javaweb.admin.constant.UserConstant;
+import com.javaweb.admin.constant.*;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
@@ -54,6 +51,38 @@ public class ThymeleafAConfig {
              * 商品分类状态
              */
             vars.put("PRODUCTCATEGORY_STATUS_LIST", ProductCategoryConstant.PRODUCTCATEGORY_STATUS_LIST);
+            /**
+             * 商品属性类型
+             */
+            vars.put("PRODUCTATTRIBUTE_TYPE_LIST", ProductAttributeConstant.PRODUCTATTRIBUTE_TYPE_LIST);
+            /**
+             * 计费类型
+             */
+            vars.put("FEIGHTTEMPLATE_CHARGETYPE_LIST", FeightTemplateConstant.FEIGHTTEMPLATE_CHARGETYPE_LIST);
+            /**
+             * 商品是否热卖
+             */
+            vars.put("PRODUCT_ISHOT_LIST", ProductConstant.PRODUCT_ISHOT_LIST);
+            /**
+             * 商品是否推荐
+             */
+            vars.put("PRODUCT_ISRECOMMAND_LIST", ProductConstant.PRODUCT_ISRECOMMAND_LIST);
+            /**
+             * 商品是否新品
+             */
+            vars.put("PRODUCT_ISNEW_LIST", ProductConstant.PRODUCT_ISNEW_LIST);
+            /**
+             * 商品审核状态
+             */
+            vars.put("PRODUCT_VERIFYSTATUS_LIST", ProductConstant.PRODUCT_VERIFYSTATUS_LIST);
+            /**
+             * 商品上下架状态
+             */
+            vars.put("PRODUCT_STATUS_LIST", ProductConstant.PRODUCT_STATUS_LIST);
+            /**
+             * 商品促销类型
+             */
+            vars.put("PRODUCT_PROMOTIONTYPE_LIST", ProductConstant.PRODUCT_PROMOTIONTYPE_LIST);
             viewResolver.setStaticVariables(vars);
         }
     }

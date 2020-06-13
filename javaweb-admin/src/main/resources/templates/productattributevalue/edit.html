@@ -1,0 +1,58 @@
+<html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+	<form class="layui-form model-form" action="" style="width:80%;">
+		<input name="id" type="hidden" th:value="${info['id']}?:0">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">商品ID：</label>
+				<div class="layui-input-inline">
+					<input name="productId" th:value="${info['productId']}" lay-verify="required|number" autocomplete="off" placeholder="请输入商品ID" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">商品属性ID：</label>
+				<div class="layui-input-inline">
+					<input name="productAttributeId" th:value="${info['productAttributeId']}" lay-verify="required|number" autocomplete="off" placeholder="请输入商品属性ID" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">商品属性名称：</label>
+				<div class="layui-input-inline">
+					<input name="productAttributeName" th:value="${info['productAttributeName']}" lay-verify="required" autocomplete="off" placeholder="请输入商品属性名称" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">商品属性类型：</label>
+				<div class="layui-input-inline">
+					<input name="productAttributeType" th:value="${info['productAttributeType']}" lay-verify="required|number" autocomplete="off" placeholder="请输入商品属性类型" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开：</label>
+				<div class="layui-input-inline">
+					<input name="value" th:value="${info['value']}" lay-verify="required" autocomplete="off" placeholder="请输入手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">所属店铺ID：</label>
+				<div class="layui-input-inline">
+					<input name="storeId" th:value="${info['storeId']}" lay-verify="required|number" autocomplete="off" placeholder="请输入所属店铺ID" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">排序号：</label>
+				<div class="layui-input-inline">
+					<input name="sort" th:value="${info['sort']}" lay-verify="required|number" autocomplete="off" placeholder="请输入排序号" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<widget:btnSubmit name="submit|立即保存,close|关闭"/>
+	</form>
+</div>
+</html>

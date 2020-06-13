@@ -41,7 +41,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">上级菜单：</label>
 				<div class="layui-input-inline">
-					<widget:treeSelect name="pid|0|上级菜单|name|id" sql="SELECT id,`name`,pid FROM sys_menu WHERE `status`=1  AND type <=3 AND mark=1 ORDER BY pid ASC,id ASC;" th:value="${info['deptId']}?:0"/>
+					<widget:treeSelect name="pid|0|上级菜单|name|id" sql="SELECT id,`name`,pid FROM sys_menu WHERE `status`=1  AND type <=3 AND mark=1 ORDER BY pid ASC,id ASC;" th:value="${info['pid']}?:0"/>
 				</div>
 			</div>
 		</div>

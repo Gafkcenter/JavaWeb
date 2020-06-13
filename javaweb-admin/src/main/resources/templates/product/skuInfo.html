@@ -1,0 +1,541 @@
+<form th:fragment="skuForm" class="layui-form model-form" style="min-width: 750px;margin: 0 auto;padding: 40px 30px 0 0;">
+	<style type="text/css">.layui-upload-drag2 {
+		position: relative;
+		padding: 0px !important;
+		border: 1px dashed #e2e2e2;
+		background-color: #fff;
+		text-align: center;
+		cursor: pointer;
+		color: #999;
+		margin: 0px 0px !important;
+	}
+	</style>
+	<input name="id" id="id" type="hidden" th:value="${info['id']}?:0">
+	<div class="layui-form-item settingSpec">
+		<label class="layui-form-label">规格设置：</label>
+		<ul th:if="${not #lists.isEmpty(productAttributeValueList)}" th:each="item,itemStat:${productAttributeValueList}" class="layui-input-block" style="margin-top: 10px;">
+			<li>
+				<button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="removeTag(this);" th:data-name="${item['productAttributeName']}" th:text="${item['productAttributeName']}"><i class="layui-icon">&#xe640;</i></button>
+				<ul>
+					<input th:id="'specTag_'+${itemStat.index+1}" th:value="${item['productAttributeValue']}" class="layui-hide"/>
+					<script th:inline="javascript">
+						layui.use(['jquery', 'tagsInput'], function () {
+							var $ = layui.jquery;
+							var tagsInput = layui.tagsInput;
+							// 无边框样式
+							$('#specTag_'+[[${itemStat.index+1}]]).tagsInput({skin: 'tagsinput-default'});
+						});
+					</script>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="layui-form-item toolSpec">
+		<label class="layui-form-label"></label>
+		<button class="layui-btn layui-btn-sm" type="button" id="addInputSpec">
+			添加新规格
+		</button>
+		<button class="layui-btn layui-btn-sm" type="button" id="generateSpec">立即生成
+		</button>
+	</div>
+	<div class="layui-form-item layui-hide inputSpec">
+		<div class="layui-inline">
+			<label class="layui-form-label">规格：</label>
+			<div class="layui-input-inline">
+				<input id="specName" name="specName" lay-verify="" autocomplete="off" placeholder="请输入规格" class="layui-input" type="text">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">规格值：</label>
+			<div class="layui-input-inline">
+				<input id="specValue" name="specValue" lay-verify="" autocomplete="off" placeholder="请输入规格值" class="layui-input" type="text">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<div class="layui-input-inline">
+				<button class="layui-btn layui-btn-sm" type="button" id="addSpec">添加</button>
+				<button class="layui-btn layui-btn-sm" type="button" id="cancelInputSpec">取消</button>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item"><label class="layui-form-label">批量设置：</label>
+		<div class="layui-input-block">
+			<table class="layui-table">
+				<thead>
+				<tr>
+					<th style="text-align: center">图片</th>
+					<th style="text-align: center">销售价</th>
+					<th style="text-align: center">成本价</th>
+					<th style="text-align: center">原价</th>
+					<th style="text-align: center">库存</th>
+					<th style="text-align: center">商品编码</th>
+					<th style="text-align: center">重量(KG)</th>
+					<th style="text-align: center">体积(m³)</th>
+					<th style="text-align: center;" width="150px">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><widget:uploadSimpleImage name="productPic" size="35x35" title="封面"/></td>
+					<td><input type="text" class="layui-input" id="price"></td>
+					<td><input type="text" class="layui-input" id="costPrice"></td>
+					<td><input type="text" class="layui-input" id="originalPrice"></td>
+					<td><input type="text" class="layui-input" id="stock"></td>
+					<td><input type="text" class="layui-input" id="skuCode"></td>
+					<td><input type="text" class="layui-input" id="volume"></td>
+					<td><input type="text" class="layui-input" id="weight"></td>
+					<td style="text-align: center;">
+						<button type="button" class="layui-btn layui-btn-sm" id="batchSku">批量修改</button>
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-danger" id="clearSku">清空</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label"></label>
+		<div class="layui-input-block">
+			<table id="skuTable" class="layui-table">
+				<thead>
+				<tr th:if="${not #lists.isEmpty(productAttributeValueList)}">
+					<th th:each="item,itemStat:${productAttributeValueList}" style="text-align:center" width="100px" th:text="${item['productAttributeName']}"></th>
+					<th style="text-align:center">图片</th>
+					<th style="text-align:center">销售价</th>
+					<th style="text-align:center">成本价</th>
+					<th style="text-align:center">原价</th>
+					<th style="text-align:center">库存</th>
+					<th style="text-align:center">商品编码</th>
+					<th style="text-align:center">重量(KG)</th>
+					<th style="text-align:center">体积(m³)</th>
+					<th style="text-align:center">是否启用</th>
+					<th style="text-align: center;" width="90px">操作</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(productAttributeValueList)}">
+
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:if="${not #lists.isEmpty(productSkuList)}" th:each="item,itemStat:${productSkuList}" th:data-name="${item['attributeValue']}">
+					<td style="text-align:center" th:each="element : ${#strings.arraySplit(item['attributeValue'], ',')}" th:text="${element}"></td>
+					<td style="text-align:center;">
+						<widget:uploadSimpleImage th:name="'coverImg_'+${itemStat.index+1}" th:value="${item['productPic']}" size="35x35"/>
+					</td>
+					<td style="text-align:center"><input name="price" th:value="${item['price']}" class="layui-input" placeholder="请输入销售价"></td>
+					<td style="text-align:center"><input name="costPrice" th:value="${item['costPrice']}" class="layui-input" placeholder="请输入成本价"></td>
+					<td style="text-align:center"><input name="originalPrice" th:value="${item['originalPrice']}" class="layui-input" placeholder="请输入原价"></td>
+					<td style="text-align:center"><input name="stock" th:value="${item['stock']}" class="layui-input" placeholder="请输入库存"></td>
+					<td style="text-align:center"><input name="skuCode" th:value="${item['skuCode']}" class="layui-input" placeholder="请输入商品编码"></td>
+					<td style="text-align:center"><input name="volume" th:value="${item['volume']}" class="layui-input" placeholder="请输入体积(m³)"></td>
+					<td style="text-align:center"><input name="weight" th:value="${item['weight']}" class="layui-input" placeholder="请输入重量(KG)"></td>
+					<td style="text-align:center">
+						<input type="checkbox" name="status[]" lay-skin="primary" th:if="${item.status == 1}" checked="" title="是否启用">
+						<input type="checkbox" name="status[]" lay-skin="primary" th:if="${item.status != 1}" title="是否启用">
+					</td>
+					<td style="text-align: center;">
+						<button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteSku(this);">删除</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button type="button" class="layui-btn layui-btn-primary" data-steps="prev"> 上一步，填写商品促销
+				</button>
+				<button class="layui-btn" lay-filter="skuInfoSubmit" lay-submit>&emsp;保存并提交&emsp;
+				</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		layui.use(['jquery', 'form', 'func'], function () {
+			var $ = layui.jquery;
+			var form = layui.form;
+			var func = layui.func;
+
+			// 添加新规格
+			$("#addInputSpec").click(function () {
+				$(".toolSpec").addClass("layui-hide");
+				$(".inputSpec").removeClass("layui-hide");
+			});
+
+			// 取消规格
+			$("#cancelInputSpec").click(function () {
+				$(".toolSpec").removeClass("layui-hide");
+				$(".inputSpec").addClass("layui-hide");
+			});
+
+			// 添加规格
+			$("#addSpec").click(function () {
+				// 规格名称
+				var specName = $("#specName").val();
+				if (specName == "") {
+					layer.msg("规格名称不能为空", {icon: 5});
+					return false;
+				}
+				// 规格属性
+				var specValue= $("#specValue").val();
+				if (specValue == "") {
+					layer.msg("规格属性不能为空", {icon: 5});
+					return false;
+				}
+				var item = [];
+				$('input[id^=specTag_]').each(function(index, element){
+					var id = $(this).attr("id");
+					var value = parseInt(id.replace(/[^0-9]/ig,""))
+					item.push(value);
+				});
+				var maxValue = 0;
+				if (item.length > 0) {
+					maxValue = Math.max.apply(null, item);
+				}
+				var html = "<ul class=\"layui-input-block\" style=\"margin-top: 10px;\">\n" +
+						"\t\t\t\t\t\t\t<li>\n" +
+						"\t\t\t\t\t\t\t\t<button type=\"button\" class=\"layui-btn layui-btn-sm layui-btn-normal\" data-name=\"" + specName + "\">" + specName + "<i class=\"layui-icon\">&#xe640;</i></button>\n" +
+						"\t\t\t\t\t\t\t\t<ul>\n" +
+						"\t\t\t\t\t\t\t\t\t<input id=\"specTag_" + (maxValue + 1) + "\" value=\""+ specValue +"\" class=\"layui-hide\"/>\n" +
+						"\t\t\t\t\t\t\t\t\t<script>\n" +
+						"\t\t\t\t\t\t\t\t\t\tlayui.use(['jquery', 'tagsInput'], function () {\n" +
+						"\t\t\t\t\t\t\t\t\t\t\tvar $ = layui.jquery;\n" +
+						"\t\t\t\t\t\t\t\t\t\t\tvar tagsInput = layui.tagsInput;\n" +
+						"\t\t\t\t\t\t\t\t\t\t\t// 无边框样式\n" +
+						"\t\t\t\t\t\t\t\t\t\t\t$('#specTag_" + (maxValue + 1) + "').tagsInput({skin: 'tagsinput-default'});\n" +
+						"\t\t\t\t\t\t\t\t\t\t});\n" +
+						"\t\t\t\t\t\t\t\t\t<\/script>\n"+
+						"\t\t\t\t\t\t\t\t</ul>\n"+
+						"\t\t\t\t\t\t\t</li>\n"+
+						"\t\t\t\t\t\t</ul>";
+				// 尾部插入HTML
+				$(".settingSpec").append(html);
+				// 初始化控件
+				$("#specName").val("");
+				$("#specValue").val("");
+
+				// 关闭输入面板
+				$(".toolSpec").removeClass("layui-hide");
+				$(".inputSpec").addClass("layui-hide");
+			});
+
+			// 批量设置SKU
+			$("#batchSku").click(function () {
+				// 图片
+				var productPic = $("#productPicId")[0].src;
+				$("img[name^='coverImg_']").each((i,val)=>{
+					$(val).attr('src', productPic);
+				});
+				// 图片隐藏域赋值
+				$("input[name^='coverImg']").each((i,val)=>{
+					$(val).val(productPic);
+				});
+				// 销售价
+				var price = $("#price").val();
+				$("input[name='price']").each((i,val)=>{
+					$(val).val(price);
+				});
+				// 成本价
+				var costPrice = $("#costPrice").val();
+				$("input[name='costPrice']").each((i,val)=>{
+					$(val).val(costPrice);
+				});
+				// 原价
+				var originalPrice = $("#originalPrice").val();
+				$("input[name='originalPrice']").each((i,val)=>{
+					$(val).val(originalPrice);
+				});
+				// 库存
+				var stock = $("#stock").val();
+				$("input[name='stock']").each((i,val)=>{
+					$(val).val(stock);
+				});
+				// 商品编码
+				var skuCode = $("#skuCode").val();
+				$("input[name='skuCode']").each((i,val)=>{
+					$(val).val(skuCode);
+				});
+				// 体积
+				var volume = $("#volume").val();
+				$("input[name='volume']").each((i,val)=>{
+					$(val).val(volume);
+				});
+				// 重量
+				var weight = $("#weight").val();
+				$("input[name='weight']").each((i,val)=>{
+					$(val).val(weight);
+				});
+			});
+
+			// 情况当前所有input框的值
+			$("#clearSku").click(function () {
+				$(this).parent().parent().find("input").each((i,val)=>{
+					$(val).val("");
+				});
+			});
+
+			// 商品ID
+			var productId = $("#id").val();
+
+			// 生成SKU
+			$("#generateSpec").click(function () {
+
+				layer.confirm('立即生成将导致SKU信息重新生成，确定要重新生成吗？', {
+					icon: 3,
+					skin: 'layer-ext-moon',
+					btn: ['确认', '取消'] //按钮
+				}, function (index) {
+					// 关闭弹窗
+					layer.close(index);
+
+					$('#skuTable thead tr').html('');
+					$('#skuTable tbody').html('');
+					//循环所有的行，判断选中的
+					var allSKU='';
+					var guiArray=[];
+					var stArray=[];
+					$('.settingSpec ul li').each((i,val)=>{
+						var title = $(val).children("button").data("name");
+						var value = $(val).find("input[id^='specTag']").val();
+
+						var array = value.split(",");
+						stArray.push(title)
+
+						stArray=Array.from(new Set(stArray))
+						guiArray.push(array);
+						guiArray=guiArray.filter(function(current){
+							return current.length>0
+						});
+					});
+
+					//循环stArray拼表头
+					//循环allSKU拼tbody
+					var strhead=''
+					$.each(stArray,(i,val)=>{
+						strhead+=`<th width="100px" style="text-align:center">${val}</th>`;
+					});
+					strhead+=`<th style="text-align:center">图片</th>
+												<th style="text-align:center">销售价</th>
+												<th style="text-align:center">成本价</th>
+												<th style="text-align:center">原价</th>
+												<th style="text-align:center">库存</th>
+												<th style="text-align:center">商品编码</th>
+												<th style="text-align:center">重量(KG)</th>
+												<th style="text-align:center">体积(m³)</th>
+												<th style="text-align:center">是否启用</th>
+												<th style="text-align: center;" width="90px">操作</th>`;
+					$('#skuTable thead tr').append(strhead);
+
+					var skuList = [];
+
+					//所有的sku组合
+					allSKU=calcDescartes(guiArray);
+					$.each(allSKU,(i,obj)=>{
+						var td=``;
+						var titleArr = [];
+						if(obj instanceof Array){
+							$.each(obj,(i,val)=>{
+								td+=`<td style="text-align:center">${val}</td>`;
+								titleArr.push(val);
+							});
+						}else{
+							td+=`<td style="text-align:center">${obj}</td>`
+						}
+						// 字符换拼接
+						var tr = '<tr data-name="'+titleArr.join(",")+'">' + td;
+						tr+='<td style="text-align:center;">'+
+								'<div class="layui-upload-drag2">'+
+									'<img id="coverImg_'+i+'" name="coverImg_'+i+'" src="/static/assets/images/upload_mini.png" alt="上传图片" width="35" height="35">'+
+									'<input class="layui-upload-file" type="file" accept="image/*" name="file">'+
+								'</div>'+
+								'<script type="text/javascript">'+
+									'\t\tlayui.use(["upload","croppers"],function(){'+
+									'\t\t\tvar layer = layui.layer'+
+									'\t\t\t\t\t,upload = layui.upload'+
+									'\t\t\t\t\t,croppers = layui.croppers'+
+									'\t\t\t\t\t,$ = layui.$;'+
+									'\t\t\tvar uploadInst = upload.render({'+
+									'\t\t\t\telem: "#coverImg_'+i+'"'+
+									'\t\t\t\t,url: "/upload/uploadImage?name=product"'+
+									'\t\t\t\t,accept:"images"'+
+									'\t\t\t\t,acceptMime:"image/*"'+
+									'\t\t\t\t,exts: "jpg|png|gif|bmp|jpeg"'+
+									'\t\t\t\t,field:"file"'+
+									'\t\t\t\t,size: 1024 * 10'+
+									'\t\t\t\t,before: function(obj){'+
+									'\t\t\t\t}'+
+									'\t\t\t\t,done: function(res){'+
+									'\t\t\t\t\tif(res.code!=0){'+
+									'\t\t\t\t\t\tlayer.msg(res.msg,{ icon: 5 });'+
+									'\t\t\t\t\t\treturn false;'+
+									'\t\t\t\t\t}'+
+									'\t\t\t\t\t$("#coverImg_'+i+'").attr("src", res.data);'+
+									'\t\t\t\t}'+
+									'\t\t\t\t,error: function(){'+
+									'\t\t\t\t\treturn layer.msg("数据请求异常");'+
+									'\t\t\t\t}'+
+									'\t\t\t});'+
+									'\t\t});'+
+								'<\/script>'+
+							'</td>'+
+							'<td style="text-align:center"><input name="price" class="layui-input" placeholder="请输入销售价"></td>'+
+							'<td style="text-align:center"><input name="costPrice" class="layui-input" placeholder="请输入成本价"></td>'+
+							'<td style="text-align:center"><input name="originalPrice" class="layui-input" placeholder="请输入原价"></td>'+
+							'<td style="text-align:center"><input name="stock" class="layui-input" placeholder="请输入库存"></td>'+
+							'<td style="text-align:center"><input name="skuCode" class="layui-input" placeholder="请输入商品编码"></td>'+
+							'<td style="text-align:center"><input name="volume" class="layui-input" placeholder="请输入体积(m³)"></td>'+
+							'<td style="text-align:center"><input name="weight" class="layui-input" placeholder="请输入重量(KG)"></td>'+
+							'<td style="text-align:center"><input type="checkbox" name="status[]" lay-skin="primary" checked="" title="是否启用"></td>'+
+							'<td style="text-align: center;">'+
+								'<button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="deleteSku(this);">删除</button>'+
+							'</td>';
+						$('#skuTable tbody').append(tr);
+
+						var item = {
+							attributeValue:titleArr.join(","),
+							productPic: '',
+							price:0,
+							costPrice:0,
+							originalPrice:0,
+							stock:0,
+							skuCode:'',
+							volume:0,
+							weight:0,
+						};
+						skuList.push(item);
+					});
+
+					// 生成SKU
+					func.ajaxPost("/product/generateSku", {"productId":productId,"skuList":skuList,"specs":stArray,"attrs":guiArray}, function (res, success) {
+						if (success) {
+							// 延迟0.5秒
+							setTimeout(function () {
+								// // 关闭窗体
+								// layer.closeAll("iframe");
+								// 刷新父页面
+								// location.reload();
+							}, 500);
+						}
+					}, "SKU生成中,请耐心等待。。。");
+					return false;
+				});
+			});
+
+
+			/* 表单一提交事件 */
+			form.on('submit(skuInfoSubmit)', function (data) {
+				//循环所有的行，判断选中的
+				var guiArray=[];
+				var stArray=[];
+				$('.settingSpec ul li').each((i,val)=>{
+					var title = $(val).children("button").data("name");
+					var value = $(val).find("input[id^='specTag']").val();
+
+					var array = value.split(",");
+					stArray.push(title)
+
+					stArray=Array.from(new Set(stArray))
+					guiArray.push(array);
+					guiArray=guiArray.filter(function(current){
+						return current.length>0
+					});
+				});
+
+				var skuList = [];
+				$("#skuTable tbody tr").each((i,obj)=>{
+					// 封面
+					var productPic = $(obj).find("img[name^='coverImg_']")[0].src;
+					// 销售价
+					var price = $(obj).find("input[name='price']").val();
+					// 成本价
+					var costPrice = $(obj).find("input[name='costPrice']").val();
+					// 原价
+					var originalPrice = $(obj).find("input[name='originalPrice']").val();
+					// 库存
+					var stock = $(obj).find("input[name='stock']").val();
+					// SKU编码
+					var skuCode = $(obj).find("input[name='skuCode']").val();
+					// 体积
+					var volume = $(obj).find("input[name='volume']").val();
+					// 重量
+					var weight = $(obj).find("input[name='weight']").val();
+					// 启用状态
+					var status = $(obj).find("input[type=checkbox]").prop("checked") == true ? 1 : 2;
+
+					var item = {
+						productPic: productPic,
+						price:price,
+						costPrice:costPrice,
+						originalPrice:originalPrice,
+						stock:stock,
+						skuCode:skuCode,
+						volume:volume,
+						weight:weight,
+						attributeValue:$(obj).data("name"),
+						status:status,
+					};
+					skuList.push(item);
+				});
+
+				// 保存SKU数据
+				func.ajaxPost("/product/updateSku", {"productId":productId,"skuList":skuList}, function (res, success) {
+					if (success) {
+						// 延迟0.5秒
+						setTimeout(function () {
+							layer.confirm('您确定要返回商品列表页吗？', {
+								icon: 3,
+								skin: 'layer-ext-moon',
+								btn: ['确认', '取消'] //按钮
+							}, function (index) {
+								// 关闭弹窗
+								layer.close(index);
+								// 关闭窗体
+								layer.closeAll("iframe");
+								// 刷新父页面
+								parent.location.reload();
+							});
+
+						}, 1000);
+					}
+				}, "数据处理中,请耐心等待。。。");
+				return false;
+			});
+
+		});
+
+		//商品组合
+		function calcDescartes (array) {
+			if (array.length < 2) return array[0] || [];
+			return [].reduce.call(array, function (col, set) {
+				var res = [];
+				col.forEach(function (c) {
+					set.forEach(function (s) {
+						var t = [].concat(Array.isArray(c) ? c : [c]);
+						t.push(s);
+						res.push(t);
+					})
+				});
+				return res;
+			});
+		}
+
+		// 移除当前标签
+		function removeTag(obj) {
+			layui.$(obj).parent().parent().remove();
+		}
+
+		// 删除SKU
+		function deleteSku(obj) {
+			// 商品ID
+			var productId = layui.$("#id").val();
+			// SKU参数
+			var attributeValue = layui.$(obj).parent().parent().data("name");
+			// 删除SKU
+			layui.func.ajaxPost("/product/deleteSku", {"productId":productId,"attributeValue":attributeValue}, function (res, success) {
+				if (success) {
+					layui.$(obj).parent().parent().remove();
+				}
+			}, "数据处理中,请耐心等待。。。");
+			return false;
+		}
+
+	</script>
+</form>

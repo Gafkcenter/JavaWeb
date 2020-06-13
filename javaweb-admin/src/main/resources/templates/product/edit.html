@@ -1,0 +1,77 @@
+<html layout:decorator="public/layout" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content" style="padding-top: 40px;">
+    <style>
+        .layui-card {
+            margin: 0px auto;
+        }
+    </style>
+    <link rel="stylesheet" th:href="@{/static/assets/module/tagsInput/tagsInput.css}"/>
+    <script type="text/javascript" th:src="@{/static/assets/module/tagsInput/tagsInput.js}"></script>
+    <!-- 分布表单开始 -->
+    <div class="layui-tab layui-steps layui-steps-readonly" lay-filter="formStepsStep"
+         style="min-width: 750px;">
+        <!-- 标题 -->
+        <ul class="layui-tab-title">
+            <li class="layui-this">
+                <i class="layui-icon layui-icon-ok">1</i>
+                <span class="layui-steps-title">第一步</span>
+                <span class="layui-steps-content">填写商品信息</span>
+            </li>
+            <li>
+                <i class="layui-icon layui-icon-ok">2</i>
+                <span class="layui-steps-title">第二步</span>
+                <span class="layui-steps-content">填写商品促销</span>
+            </li>
+            <li>
+                <i class="layui-icon layui-icon-ok">3</i>
+                <span class="layui-steps-title">第三步</span>
+                <span class="layui-steps-content">填写商品属性</span>
+            </li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <!-- 填写商品信息 -->
+                <div th:replace="./product/productInfo::productForm"></div>
+            </div>
+            <div class="layui-tab-item">
+                <!-- 填写促销信息 -->
+                <div th:replace="./product/promotionInfo::promotionForm"></div>
+            </div>
+            <div class="layui-tab-item ">
+                <div th:replace="./product/skuInfo::skuForm"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        layui.use(['layer', 'form', 'steps', 'common'], function () {
+            var $ = layui.jquery;
+            var form = layui.form;
+            var steps = layui.steps;
+            var common = layui.common;
+
+            // 提交商品信息
+            form.on('submit(productInfoSubmit)', function (data) {
+                // 提交表单
+                common.submitForm(data.field, "/product/add", function (res, success) {
+                    if (success) {
+                        $("input[name='id']").val(res.data);
+                        steps.next('formStepsStep');
+                    }
+                }, false);
+                return false;
+            });
+
+            // 提交促销信息
+            form.on('submit(promotionInfoSubmit)', function (data) {
+                // 提交表单
+                common.submitForm(data.field, "/product/update", function (res, success) {
+                    if (success) {
+                        steps.next('formStepsStep');
+                    }
+                }, false);
+                return false;
+            });
+        });
+    </script>
+</div>
+</html>
