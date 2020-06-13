@@ -4,7 +4,7 @@ server:
   #  servlet:
   #    # 项目的前缀名
   #    context-path: /javaweb
-  IMAGE_URL: http://manage.javaweb.rxthink.cn/
+  IMAGE_URL: http://manage.javaweb.vip/
 
 spring:
   # 配置数据源

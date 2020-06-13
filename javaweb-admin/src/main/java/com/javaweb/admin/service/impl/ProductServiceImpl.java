@@ -274,78 +274,78 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
      */
     @Override
     public JsonResult generateSku(GenerateSkuDto productSkuDto) {
-        // 商品ID验证
-        if (productSkuDto.getProductId() == null || productSkuDto.getProductId() == 0) {
-            return JsonResult.error("商品ID不能为空");
-        }
-        // 验证规格是否为空
-        if (productSkuDto.getSpecs().size() == 0) {
-            return JsonResult.error("规格不存在");
-        }
-        // 验证规格属性是否为空
-        if (productSkuDto.getAttrs().size() == 0) {
-            return JsonResult.error("规格属性不存在");
-        }
-        // 判断规格和规格属性数组大小是否对等
-        if (productSkuDto.getSpecs().size() != productSkuDto.getAttrs().size()) {
-            return JsonResult.error("规格信息异常");
-        }
-        // 验证SKU列表是否为空
-        if (productSkuDto.getSkuList().size() == 0) {
-            return JsonResult.error("SKU信息不存在");
-        }
-
-        // 删除已存在的规格属性
-        productAttributeValueService.deleteProductAttributeValueByProductId(productSkuDto.getProductId());
-
-        // 创建商品规格属性值信息
-        for (int i = 0; i < productSkuDto.getSpecs().size(); i++) {
-            // 判断规格是否存在
-            ProductAttributeValue attributeValue = productAttributeValueMapper.selectOne(new LambdaQueryWrapper<ProductAttributeValue>()
-                    .eq(ProductAttributeValue::getProductId, productSkuDto.getProductId())
-                    .eq(ProductAttributeValue::getProductAttributeId, i + 1));
-            // 创建或更新规格信息
-            ProductAttributeValue productAttributeValue = new ProductAttributeValue();
-            productAttributeValue.setProductId(productSkuDto.getProductId());
-            productAttributeValue.setProductAttributeId(i + 1);
-            productAttributeValue.setProductAttributeName(productSkuDto.getSpecs().get(i));
-            productAttributeValue.setProductAttributeType(1);
-            productAttributeValue.setProductAttributeValue(org.apache.commons.lang3.StringUtils.join(productSkuDto.getAttrs().get(i), ","));
-            productAttributeValue.setSort(i);
-            if (attributeValue != null) {
-                // 恢复并更新
-                productAttributeValue.setId(attributeValue.getId());
-                productAttributeValue.setMark(1);
-                productAttributeValue.setUpdateUser(ShiroUtils.getAdminId());
-                productAttributeValue.setUpdateTime(DateUtils.now());
-                productAttributeValueMapper.updateById(productAttributeValue);
-            } else {
-                // 插入记录
-                productAttributeValue.setCreateUser(ShiroUtils.getAdminId());
-                productAttributeValue.setCreateTime(DateUtils.now());
-                productAttributeValueMapper.insert(productAttributeValue);
-            }
-        }
-
-        // 删除已存在SKU列表
-        productSkuService.deleteProductSkuByProductId(productSkuDto.getProductId());
-
-        // 创建SKU列表
-        for (ProductSkuListDto productSkuListDto : productSkuDto.getSkuList()) {
-            ProductSku productSku = new ProductSku();
-            productSku.setProductId(productSkuDto.getProductId());
-            productSku.setPrice(productSkuListDto.getPrice());
-            productSku.setCostPrice(productSkuListDto.getCostPrice());
-            productSku.setOriginalPrice(productSkuListDto.getOriginalPrice());
-            productSku.setStock(productSkuListDto.getStock());
-            productSku.setSkuCode(productSkuListDto.getSkuCode());
-            productSku.setVolume(productSkuListDto.getVolume());
-            productSku.setWeight(productSkuListDto.getWeight());
-            productSku.setAttributeValue(productSkuListDto.getAttributeValue());
-            productSku.setCreateUser(ShiroUtils.getAdminId());
-            productSku.setCreateTime(DateUtils.now());
-            productSkuMapper.insert(productSku);
-        }
+//        // 商品ID验证
+//        if (productSkuDto.getProductId() == null || productSkuDto.getProductId() == 0) {
+//            return JsonResult.error("商品ID不能为空");
+//        }
+//        // 验证规格是否为空
+//        if (productSkuDto.getSpecs().size() == 0) {
+//            return JsonResult.error("规格不存在");
+//        }
+//        // 验证规格属性是否为空
+//        if (productSkuDto.getAttrs().size() == 0) {
+//            return JsonResult.error("规格属性不存在");
+//        }
+//        // 判断规格和规格属性数组大小是否对等
+//        if (productSkuDto.getSpecs().size() != productSkuDto.getAttrs().size()) {
+//            return JsonResult.error("规格信息异常");
+//        }
+//        // 验证SKU列表是否为空
+//        if (productSkuDto.getSkuList().size() == 0) {
+//            return JsonResult.error("SKU信息不存在");
+//        }
+//
+//        // 删除已存在的规格属性
+//        productAttributeValueService.deleteProductAttributeValueByProductId(productSkuDto.getProductId());
+//
+//        // 创建商品规格属性值信息
+//        for (int i = 0; i < productSkuDto.getSpecs().size(); i++) {
+//            // 判断规格是否存在
+//            ProductAttributeValue attributeValue = productAttributeValueMapper.selectOne(new LambdaQueryWrapper<ProductAttributeValue>()
+//                    .eq(ProductAttributeValue::getProductId, productSkuDto.getProductId())
+//                    .eq(ProductAttributeValue::getProductAttributeId, i + 1));
+//            // 创建或更新规格信息
+//            ProductAttributeValue productAttributeValue = new ProductAttributeValue();
+//            productAttributeValue.setProductId(productSkuDto.getProductId());
+//            productAttributeValue.setProductAttributeId(i + 1);
+//            productAttributeValue.setProductAttributeName(productSkuDto.getSpecs().get(i));
+//            productAttributeValue.setProductAttributeType(1);
+//            productAttributeValue.setProductAttributeValue(org.apache.commons.lang3.StringUtils.join(productSkuDto.getAttrs().get(i), ","));
+//            productAttributeValue.setSort(i);
+//            if (attributeValue != null) {
+//                // 恢复并更新
+//                productAttributeValue.setId(attributeValue.getId());
+//                productAttributeValue.setMark(1);
+//                productAttributeValue.setUpdateUser(ShiroUtils.getAdminId());
+//                productAttributeValue.setUpdateTime(DateUtils.now());
+//                productAttributeValueMapper.updateById(productAttributeValue);
+//            } else {
+//                // 插入记录
+//                productAttributeValue.setCreateUser(ShiroUtils.getAdminId());
+//                productAttributeValue.setCreateTime(DateUtils.now());
+//                productAttributeValueMapper.insert(productAttributeValue);
+//            }
+//        }
+//
+//        // 删除已存在SKU列表
+//        productSkuService.deleteProductSkuByProductId(productSkuDto.getProductId());
+//
+//        // 创建SKU列表
+//        for (ProductSkuListDto productSkuListDto : productSkuDto.getSkuList()) {
+//            ProductSku productSku = new ProductSku();
+//            productSku.setProductId(productSkuDto.getProductId());
+//            productSku.setPrice(productSkuListDto.getPrice());
+//            productSku.setCostPrice(productSkuListDto.getCostPrice());
+//            productSku.setOriginalPrice(productSkuListDto.getOriginalPrice());
+//            productSku.setStock(productSkuListDto.getStock());
+//            productSku.setSkuCode(productSkuListDto.getSkuCode());
+//            productSku.setVolume(productSkuListDto.getVolume());
+//            productSku.setWeight(productSkuListDto.getWeight());
+//            productSku.setAttributeValue(productSkuListDto.getAttributeValue());
+//            productSku.setCreateUser(ShiroUtils.getAdminId());
+//            productSku.setCreateTime(DateUtils.now());
+//            productSkuMapper.insert(productSku);
+//        }
         return JsonResult.success();
     }
 
@@ -357,50 +357,51 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
      */
     @Override
     public JsonResult updateSku(UpdateSkuDto updateSkuDto) {
-        // 商品ID验证
-        if (updateSkuDto.getProductId() == null || updateSkuDto.getProductId() == 0) {
-            return JsonResult.error("商品ID不能为空");
-        }
-        // 验证SKU列表是否为空
-        if (updateSkuDto.getSkuList().size() == 0) {
-            return JsonResult.error("SKU信息不存在");
-        }
-
-        // 遍历SKU信息
-        Integer totalNum = 0;
-        for (ProductSkuListDto productSkuListDto : updateSkuDto.getSkuList()) {
-            QueryWrapper<ProductSku> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("product_id", updateSkuDto.getProductId());
-            queryWrapper.eq("attribute_value", productSkuListDto.getAttributeValue());
-            queryWrapper.eq("mark", 1);
-            ProductSku productSkuInfo = productSkuMapper.selectOne(queryWrapper);
-            if (productSkuInfo == null) {
-                continue;
-            }
-            ProductSku productSku = new ProductSku();
-            productSku.setId(productSkuInfo.getId());
-            if (!StringUtils.isEmpty(productSkuListDto.getProductPic()) && productSkuListDto.getProductPic().contains(CommonConfig.imageURL)) {
-                productSku.setProductPic(productSkuListDto.getProductPic().replaceAll(CommonConfig.imageURL, ""));
-            } else {
-                productSku.setProductPic(productSkuListDto.getProductPic());
-            }
-            productSku.setPrice(productSkuListDto.getPrice());
-            productSku.setAttributeValue(productSkuListDto.getAttributeValue());
-            productSku.setCostPrice(productSkuListDto.getCostPrice());
-            productSku.setOriginalPrice(productSkuListDto.getOriginalPrice());
-            productSku.setStock(productSkuListDto.getStock());
-            productSku.setSkuCode(productSkuListDto.getSkuCode());
-            productSku.setVolume(productSkuListDto.getVolume());
-            productSku.setWeight(productSkuListDto.getWeight());
-            productSku.setStatus(productSkuListDto.getStatus());
-            productSku.setUpdateUser(ShiroUtils.getAdminId());
-            productSku.setUpdateTime(DateUtils.now());
-            Integer result = productSkuMapper.updateById(productSku);
-            if (result == 1) {
-                totalNum++;
-            }
-        }
-        return JsonResult.success(String.format("本地共更新【%s】条SKU记录", totalNum));
+        return JsonResult.success();
+//        // 商品ID验证
+//        if (updateSkuDto.getProductId() == null || updateSkuDto.getProductId() == 0) {
+//            return JsonResult.error("商品ID不能为空");
+//        }
+//        // 验证SKU列表是否为空
+//        if (updateSkuDto.getSkuList().size() == 0) {
+//            return JsonResult.error("SKU信息不存在");
+//        }
+//
+//        // 遍历SKU信息
+//        Integer totalNum = 0;
+//        for (ProductSkuListDto productSkuListDto : updateSkuDto.getSkuList()) {
+//            QueryWrapper<ProductSku> queryWrapper = new QueryWrapper<>();
+//            queryWrapper.eq("product_id", updateSkuDto.getProductId());
+//            queryWrapper.eq("attribute_value", productSkuListDto.getAttributeValue());
+//            queryWrapper.eq("mark", 1);
+//            ProductSku productSkuInfo = productSkuMapper.selectOne(queryWrapper);
+//            if (productSkuInfo == null) {
+//                continue;
+//            }
+//            ProductSku productSku = new ProductSku();
+//            productSku.setId(productSkuInfo.getId());
+//            if (!StringUtils.isEmpty(productSkuListDto.getProductPic()) && productSkuListDto.getProductPic().contains(CommonConfig.imageURL)) {
+//                productSku.setProductPic(productSkuListDto.getProductPic().replaceAll(CommonConfig.imageURL, ""));
+//            } else {
+//                productSku.setProductPic(productSkuListDto.getProductPic());
+//            }
+//            productSku.setPrice(productSkuListDto.getPrice());
+//            productSku.setAttributeValue(productSkuListDto.getAttributeValue());
+//            productSku.setCostPrice(productSkuListDto.getCostPrice());
+//            productSku.setOriginalPrice(productSkuListDto.getOriginalPrice());
+//            productSku.setStock(productSkuListDto.getStock());
+//            productSku.setSkuCode(productSkuListDto.getSkuCode());
+//            productSku.setVolume(productSkuListDto.getVolume());
+//            productSku.setWeight(productSkuListDto.getWeight());
+//            productSku.setStatus(productSkuListDto.getStatus());
+//            productSku.setUpdateUser(ShiroUtils.getAdminId());
+//            productSku.setUpdateTime(DateUtils.now());
+//            Integer result = productSkuMapper.updateById(productSku);
+//            if (result == 1) {
+//                totalNum++;
+//            }
+//        }
+//        return JsonResult.success(String.format("本地共更新【%s】条SKU记录", totalNum));
     }
 
     /**
@@ -411,18 +412,18 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
      */
     @Override
     public JsonResult deleteSku(DeleteSkuDto deleteSkuDto) {
-        QueryWrapper<ProductSku> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("product_id", deleteSkuDto.getProductId());
-        queryWrapper.eq("attribute_value", deleteSkuDto.getAttributeValue());
-        queryWrapper.eq("mark", 1);
-        ProductSku productSkuInfo = productSkuMapper.selectOne(queryWrapper);
-        if (productSkuInfo == null) {
-            return JsonResult.error("SKU信息不存在");
-        }
-        Integer result = productSkuMapper.deleteById(productSkuInfo.getId());
-        if (result == 0) {
-            return JsonResult.error("删除失败");
-        }
+//        QueryWrapper<ProductSku> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("product_id", deleteSkuDto.getProductId());
+//        queryWrapper.eq("attribute_value", deleteSkuDto.getAttributeValue());
+//        queryWrapper.eq("mark", 1);
+//        ProductSku productSkuInfo = productSkuMapper.selectOne(queryWrapper);
+//        if (productSkuInfo == null) {
+//            return JsonResult.error("SKU信息不存在");
+//        }
+//        Integer result = productSkuMapper.deleteById(productSkuInfo.getId());
+//        if (result == 0) {
+//            return JsonResult.error("删除失败");
+//        }
         return JsonResult.success("删除成功");
     }
 }

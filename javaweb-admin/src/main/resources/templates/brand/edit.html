@@ -5,11 +5,11 @@
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">品牌logo：</label>
-				<widget:uploadSingleImage name="brandLogo" th:value="${info['brandLogo']}" size="90x90" title="品牌logo" tips="450x450"/>
+				<widget:uploadSingleImage name="brandLogo|LOGO|90x90|brand|建议上传尺寸450x450" th:value="${info['brandLogo']}"/>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">专区大图：</label>
-				<widget:uploadSingleImage name="bigPic" th:value="${info['bigPic']}" size="90x90" title="专区大图" tips="450x450"/>
+				<widget:uploadSingleImage name="bigPic|专区大图|90x90|brand|建议上传尺寸450x450" th:value="${info['bigPic']}"/>
 			</div>
 		</div>
 		<div class="layui-form-item">

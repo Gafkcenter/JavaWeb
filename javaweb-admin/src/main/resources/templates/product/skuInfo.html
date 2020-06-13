@@ -76,7 +76,7 @@
 				</thead>
 				<tbody>
 				<tr>
-					<td><widget:uploadSimpleImage name="productPic" size="35x35" title="封面"/></td>
+					<td><widget:uploadSimpleImage name="productPic|封面|35x35|product|建议上传尺寸450x450"/></td>
 					<td><input type="text" class="layui-input" id="price"></td>
 					<td><input type="text" class="layui-input" id="costPrice"></td>
 					<td><input type="text" class="layui-input" id="originalPrice"></td>
@@ -119,7 +119,7 @@
 				<tr th:if="${not #lists.isEmpty(productSkuList)}" th:each="item,itemStat:${productSkuList}" th:data-name="${item['attributeValue']}">
 					<td style="text-align:center" th:each="element : ${#strings.arraySplit(item['attributeValue'], ',')}" th:text="${element}"></td>
 					<td style="text-align:center;">
-						<widget:uploadSimpleImage th:name="'coverImg_'+${itemStat.index+1}" th:value="${item['productPic']}" size="35x35"/>
+						<widget:uploadSimpleImage th:name="'coverImg_'+${itemStat.index+1}+'|封面|35x35|product|建议上传尺寸450x450'" th:value="${item['productPic']}"/>
 					</td>
 					<td style="text-align:center"><input name="price" th:value="${item['price']}" class="layui-input" placeholder="请输入销售价"></td>
 					<td style="text-align:center"><input name="costPrice" th:value="${item['costPrice']}" class="layui-input" placeholder="请输入成本价"></td>

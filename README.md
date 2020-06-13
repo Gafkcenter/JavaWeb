@@ -255,7 +255,7 @@ layui.use(['func'], function () {
 ## 常规组件
 1、上传图片图片及裁剪
 ```
-<widget:uploadSingleImage name="avatar" th:value="${info['avatar']}" size="90x90" title="头像" tips="450x450"/>
+<widget:uploadSingleImage name="avatar|头像|90x90|admin|建议上传尺寸450x450" th:value="${info['avatar']}"/>
 ```
 2、下拉单选
 ```

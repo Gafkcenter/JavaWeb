@@ -13,7 +13,7 @@
 		<#if model.columnImage == true>
 		<div class="layui-form-item">
 			<label class="layui-form-label">${model.columnComment}：</label>
-			<widget:uploadSingleImage name="${model.changeColumnName?uncap_first}" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}" size="90x90" title="${model.columnComment}" tips="450x450"/>
+			<widget:uploadSingleImage name="${model.changeColumnName?uncap_first}|${model.columnComment}|90x90|${entityName?lower_case}|建议上传尺寸450x450" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}"/>
 		</div>
 		<#elseif model.columnTextArea == true>
 		<div class="layui-form-item">
@@ -103,7 +103,7 @@
 			<#if model[0].columnImage == true>
 			<div class="layui-inline">
 				<label class="layui-form-label">${model[0].columnComment}：</label>
-				<widget:uploadSingleImage name="${model[0].changeColumnName?uncap_first}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}" size="90x90" title="${model[0].columnComment}" tips="450x450"/>
+				<widget:uploadSingleImage name="${model[0].changeColumnName?uncap_first}|${model[0].columnComment}|90x90|${entityName?lower_case}|建议上传尺寸450x450" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}"/>
 			</div>
 			<#elseif model[0].columnTextArea == true>
 			<label class="layui-form-label">${model[0].columnComment}：</label>
@@ -206,7 +206,7 @@
 		<#if model[1].columnImage == true>
 			<div class="layui-inline">
 				<label class="layui-form-label">${model[1].columnComment}：</label>
-				<widget:uploadSingleImage name="${model[1].changeColumnName?uncap_first}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}" size="90x90" title="${model[1].columnComment}" tips="450x450"/>
+				<widget:uploadSingleImage name="${model[1].changeColumnName?uncap_first}|${model[1].columnComment}|90x90|temp|建议上传尺寸450x450" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}"/>
 			</div>
 		<#elseif model[1].changeColumnName?uncap_first = "mobile">
 			<div class="layui-inline">
