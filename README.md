@@ -288,64 +288,60 @@ layui.use(['func'], function () {
 
 
 ## 效果图展示
-
-#### 0、框架结构
- ![项目结构](http://images.javaweb.rxthink.cn/demo/15.png)
-
-
-#### 1、锁屏
- ![锁屏](http://images.javaweb.rxthink.cn/demo/1.png)
  
-#### 2、系统登录
+#### 1、系统登录
  ![系统登录](http://images.javaweb.rxthink.cn/demo/0.png)
  
-#### 3、系统欢迎页
+#### 2、系统欢迎页
  ![系统欢迎页](http://images.javaweb.rxthink.cn/demo/2.png)
  
-#### 4、人员管理
+#### 3、人员管理
  ![人员管理](http://images.javaweb.rxthink.cn/demo/3.png)
  
-#### 5、图片裁剪
+#### 4、图片裁剪
  ![图片裁剪](http://images.javaweb.rxthink.cn/demo/4.png)
  
-#### 6、角色权限配置
+#### 5、角色权限配置
  ![角色权限配置](http://images.javaweb.rxthink.cn/demo/5.png)
  
-#### 7、职级管理
+#### 6、职级管理
  ![职级管理](http://images.javaweb.rxthink.cn/demo/6.png)
  
-#### 8、岗位管理
+#### 7、岗位管理
  ![岗位管理](http://images.javaweb.rxthink.cn/demo/7.png)
  
-#### 9、部门管理
+#### 8、部门管理
  ![部门管理](http://images.javaweb.rxthink.cn/demo/8.png)
  
-#### 10、菜单管理
+#### 9、菜单管理
  ![菜单管理](http://images.javaweb.rxthink.cn/demo/9.png)
  
-#### 11、代码生成
+#### 10、代码生成
  ![代码生成](http://images.javaweb.rxthink.cn/demo/10.png)
  
-#### 12、网站配置
+#### 11、网站配置
  ![网站配置](http://images.javaweb.rxthink.cn/demo/11.png)
  
-#### 13、通知公告
+#### 12、通知公告
  ![通知公告](http://images.javaweb.rxthink.cn/demo/12.png)
  
-#### 14、消息模板
+#### 13、消息模板
  ![消息模板](http://images.javaweb.rxthink.cn/demo/13.png)
  
-#### 15、系统配置
+#### 14、系统配置
  ![系统配置](http://images.javaweb.rxthink.cn/demo/14.png)
  
-#### 16、操作日志
+#### 15、操作日志
 ![操作日志](http://images.javaweb.rxthink.cn/demo/16.png)
 
-#### 17、商品信息
+#### 16、商品信息
 ![SKU设置](http://images.javaweb.rxthink.cn/demo/17.png)
 
-#### 18、商品SKU
+#### 17、商品SKU
 ![SKU设置](http://images.javaweb.rxthink.cn/demo/18.png)
+
+#### 18、框架结构
+ ![项目结构](http://images.javaweb.rxthink.cn/demo/15.png)
 
 
 ## 更新说明
