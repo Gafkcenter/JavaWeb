@@ -35,7 +35,7 @@ layui.use(['func'], function () {
             , {field: 'url', width: 150, title: 'URL地址', align: 'center'}
             , {field: 'permission', width: 180, title: '权限标识', align: 'center'}
             , {field: 'status', width: 100, title: '状态', align: 'center', templet: '#statusTpl'}
-            , {field: 'isPublic', width: 80, title: '是否公共', align: 'center', templet(d) {
+            , {field: 'isPublic', width: 100, title: '是否公共', align: 'center', templet(d) {
                 var cls = "";
                 if (d.isPublic == 1) {
                     // 是

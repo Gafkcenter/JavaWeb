@@ -6,20 +6,15 @@
         <div class="layui-form-item">
             <div class="layui-inline">
                 <div class="layui-input-inline">
-                    <input type="text" name="name" placeholder="请输入部门名称" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <!-- 类型下拉单选 -->
-            <div class="layui-inline">
-                <div class="layui-input-inline">
-                    <!-- 下拉单选 -->
-                    <widget:singleSelect name="type|0|类型|name|id" th:data="${DEP_TYPE_LIST}" value="0"/>
+                    <input type="text" name="name" id="keywords" placeholder="请输入部门名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <div class="layui-input-inline" style="width: auto;">
                     <widget:btnQuery name="查询"/>
                     <widget:btnAdd name="添加部门"/>
+                    <widget:btnExpand name="全部展开"/>
+                    <widget:btnCollapse name="全部折叠"/>
                     <widget:btnDAll name="批量删除"/>
                 </div>
             </div>
