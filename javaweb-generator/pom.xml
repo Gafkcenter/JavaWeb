@@ -44,10 +44,6 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.javaweb</groupId>
-            <artifactId>javaweb-system</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

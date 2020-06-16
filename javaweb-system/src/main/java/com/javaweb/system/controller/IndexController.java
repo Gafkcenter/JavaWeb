@@ -2,6 +2,7 @@ package com.javaweb.system.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.javaweb.common.config.SystemConfig;
 import com.javaweb.common.utils.CommonUtils;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
@@ -57,6 +58,10 @@ public class IndexController {
         // 用户信息
         admin.setAvatar(CommonUtils.getImageURL(admin.getAvatar()));
         model.addAttribute("user", admin);
+
+        // 系统信息
+        model.addAttribute("nickName", SystemConfig.nickName);
+        model.addAttribute("version", SystemConfig.version);
         return "index";
     }
 

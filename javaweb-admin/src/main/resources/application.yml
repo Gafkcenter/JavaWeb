@@ -54,3 +54,12 @@ shiro:
     maxSession: -1
     # 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
     kickoutAfter: false
+
+# 系统信息
+system:
+  # 系统名称
+  fullName: JavaWeb后台开发框架
+  # 系统简称
+  nickName: JavaWeb专业版v1.0.5
+  # 系统版本号
+  version: v1.0.5

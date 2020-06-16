@@ -22,6 +22,7 @@
         <module>javaweb-system</module>
         <module>javaweb-admin</module>
         <module>javaweb-shiro</module>
+        <module>javaweb-quartz</module>
     </modules>
 
     <properties>
@@ -72,6 +73,11 @@
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-shiro</artifactId>
+                <version>${version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javaweb</groupId>
+                <artifactId>javaweb-quartz</artifactId>
                 <version>${version}</version>
             </dependency>
 

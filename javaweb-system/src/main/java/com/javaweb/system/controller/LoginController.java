@@ -1,5 +1,6 @@
 package com.javaweb.system.controller;
 
+import com.javaweb.common.config.SystemConfig;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.shiro.dto.LoginDto;
 import com.javaweb.shiro.service.IShiroLoginService;
@@ -7,6 +8,7 @@ import com.javaweb.shiro.utils.ShiroUtils;
 import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +34,8 @@ public class LoginController {
      * @return
      */
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("fullName", SystemConfig.fullName);
         return "login";
     }
 

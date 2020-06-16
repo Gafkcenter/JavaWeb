@@ -1,13 +1,14 @@
 package com.javaweb.common.utils;
 
+import com.javaweb.common.config.DbConfig;
+
 import java.sql.*;
 
 public class JDBCUtils {
-    private static String driver = "com.mysql.cj.jdbc.Driver";
-    private static String url = "jdbc:mysql://47.99.90.120:3306/javaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=true&tinyInt1isBit=false";
-    private static String user = "root";
-    private static String password = "llwx1qaz#$^";
 
+    /**
+     * 构造函数
+     */
     private JDBCUtils() {
     }
 
@@ -16,7 +17,7 @@ public class JDBCUtils {
          * 驱动注册
          */
         try {
-            Class.forName(driver);
+            Class.forName(DbConfig.driver);
         } catch (ClassNotFoundException e) {
             throw new ExceptionInInitializerError(e);
         }
@@ -30,7 +31,7 @@ public class JDBCUtils {
      * @throws SQLException
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+        return DriverManager.getConnection(DbConfig.url, DbConfig.username, DbConfig.password);
     }
 
     /**
