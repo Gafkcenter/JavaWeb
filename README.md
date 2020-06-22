@@ -89,8 +89,11 @@ JavaWeb采用LGPL-3.0开源协议
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| JavaWeb 混编版 v1.0.0 | 采用SpringBoot2+Thymeleaf+layui | https://gitee.com/javaweb520/JavaWeb |
-| JavaWeb Vue版本 v1.0.0 | 前后端分离版，采用SpringBoot2+Vue | https://gitee.com/javaweb520/JavaWeb_Vue |
+| JavaWeb 混编版 | 采用SpringBoot2+Thymeleaf+layui | https://gitee.com/javaweb520/JavaWeb |
+| JavaWeb_Vue版本 | 前后端分离版，采用SpringBoot2+Vue | https://gitee.com/javaweb520/JavaWeb_Vue |
+| JavaWeb_Vue_UI前端 | 基于element-ui自定义编写 | https://gitee.com/javaweb520/JavaWeb_Vue_UI |
+| JavaWeb_Ant版本 | 前后端分离版，采用SpringBoot2+AntDesign | https://gitee.com/javaweb520/JavaWeb_Ant |
+| JavaWeb_Ant_UI前端 | 基于AntDesign自定义编写 | https://gitee.com/javaweb520/JavaWeb_Ant_UI |
 
 
 ### Thymeleaf模板引擎页面拆分
