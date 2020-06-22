@@ -101,7 +101,7 @@
 				<!-- 富文本 -->
 				<th th:case="ueditor">
 					<textarea th:name="${item['tag']}" th:placeholder="'请输入'+${item['title']}" class="layui-textarea" th:text="${item['value']}"></textarea>
-					<widget:kindEditor th:name="${item['tag']}" type="default" width="100%" height="350"/>
+					<widget:kindEditor th:name="${item['tag']}" type="default" dirname="config" width="100%" height="350"/>
 				</th>
 			</div>
 			</div>

@@ -48,7 +48,7 @@
 			<label class="layui-form-label">通知内容：</label>
 			<div class="layui-input-block">
 				<textarea name="content" placeholder="请输入通知内容" class="layui-textarea" th:text="${info['content']}"></textarea>
-				<widget:kindEditor name="content" type="default" width="100%" height="350"/>
+				<widget:kindEditor name="content" type="default" dirname="notice" width="100%" height="350"/>
 			</div>
 		</div>
 		<widget:btnSubmit name="submit|立即保存,close|关闭"/>

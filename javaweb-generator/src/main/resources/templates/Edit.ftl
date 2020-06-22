@@ -21,7 +21,7 @@
 			<div class="layui-input-block">
 				<textarea name="${model.changeColumnName?uncap_first}" placeholder="请输入${model.columnComment}" class="layui-textarea" th:text="${tplTag}{info['${model.changeColumnName?uncap_first}']}"></textarea>
 				<#if model.columnType = 'TEXT'>
-				<widget:kindEditor name="${model.changeColumnName?uncap_first}" type="default" width="100%" height="350"/>
+				<widget:kindEditor name="${model.changeColumnName?uncap_first}" type="default" dirname="${entityName?lower_case}" width="100%" height="350"/>
 				</#if>
 			</div>
 		</div>
@@ -110,7 +110,7 @@
 			<div class="layui-input-block">
 				<textarea name="${model[0].changeColumnName?uncap_first}" placeholder="请输入${model[0].columnComment}" class="layui-textarea" th:text="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}"></textarea>
 			<#if model[0].columnType = 'TEXT'>
-				<widget:kindEditor name="${model[0].changeColumnName?uncap_first}" type="default" width="100%" height="350"/>
+				<widget:kindEditor name="${model[0].changeColumnName?uncap_first}" type="default" dirname="${entityName?lower_case}" width="100%" height="350"/>
 			</#if>
 			</div>
 			<#elseif model[0].changeColumnName?uncap_first = "mobile">

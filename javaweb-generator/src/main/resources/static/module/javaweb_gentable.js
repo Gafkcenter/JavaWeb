@@ -33,7 +33,14 @@ layui.use(['func', 'common'], function () {
         func.tableIns(cols, "tableList", function (layEvent, data) {
             // 代码生成
             if (layEvent === "generator") {
-                func.ajaxPost("/gentable/batchGenCode", {"tables": data.tableName});
+                layer.confirm('您确定要生成当前模块吗？生成后将覆盖现有的模块！', {
+                    icon: 3,
+                    skin: 'layer-ext-moon',
+                    btn: ['确认', '取消'] //按钮
+                }, function (index) {
+                    func.ajaxPost("/gentable/batchGenCode", {"tables": data.tableName});
+                });
+
             }
         });
 
