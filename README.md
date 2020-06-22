@@ -263,7 +263,7 @@ layui.use(['func'], function () {
 ```
 3、日期选择
 ```
-<widget:dateSelect name="birthday|date|请选择出生日期" th:value="${info['birthday']}"/>
+<widget:dateSelect name="birthday|出生日期|date" th:value="${info['birthday']}"/>
 ```
 4、分组下拉选择
 ```
@@ -345,6 +345,11 @@ layui.use(['func'], function () {
 
 
 ## 更新说明
+
+# 2020-06-2更新  
+1、【优化】优化富文本编辑器组件
+
+2、【优化】优化日期选择组件；
 
 # 2020-06-16更新  
 1、【新增】优化数据库连接池，新增DbConfig数据库配置读取文件；

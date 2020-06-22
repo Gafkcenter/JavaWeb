@@ -66,7 +66,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">${model.columnComment}：</label>
 			<div class="layui-input-block">
-				<widget:dateSelect name="${model.changeColumnName?uncap_first}|${model.columnType?lower_case}|请选择${model.columnComment}" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}"/>
+				<widget:dateSelect name="${model.changeColumnName?uncap_first}|${model.columnComment}|${model.columnType?lower_case}" th:value="${tplTag}{info['${model.changeColumnName?uncap_first}']}"/>
 			</div>
 		</div>
 		</#if>
@@ -163,7 +163,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">${model[0].columnComment}：</label>
 				<div class="layui-input-inline">
-					<widget:dateSelect name="${model[0].changeColumnName?uncap_first}|${model[0].columnType?lower_case}|请选择${model[0].columnComment}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}"/>
+					<widget:dateSelect name="${model[0].changeColumnName?uncap_first}|${model[0].columnComment}|${model[0].columnType?lower_case}" th:value="${tplTag}{info['${model[0].changeColumnName?uncap_first}']}"/>
 				</div>
 			</div>
 		</#if>
@@ -258,7 +258,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">${model[1].columnComment}：</label>
 				<div class="layui-input-inline">
-					<widget:dateSelect name="${model[1].changeColumnName?uncap_first}|${model[1].columnType?lower_case}|请选择${model[1].columnComment}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}"/>
+					<widget:dateSelect name="${model[1].changeColumnName?uncap_first}|${model[1].columnComment}|${model[1].columnType?lower_case}" th:value="${tplTag}{info['${model[1].changeColumnName?uncap_first}']}"/>
 				</div>
 			</div>
 		</#if>

@@ -73,13 +73,13 @@
 				<!-- 日期选择 -->
 				<th th:case="date">
 				<div class="layui-input-inline">
-					<widget:dateSelect th:name="${item['tag']}+'|date|请选择'+${item['title']}" th:value="${item['value']}"/>
+					<widget:dateSelect th:name="${item['tag']}+'|'+${item['title']}+'|date'" th:value="${item['value']}"/>
 				</div>
 				</th>
 				<!-- 时间选择 -->
 				<th th:case="datetime">
 				<div class="layui-input-inline">
-					<widget:dateSelect th:name="${item['tag']}+'|datetime|请选择'+${item['title']}" th:value="${item['value']}"/>
+					<widget:dateSelect th:name="${item['tag']}+'|'+${item['title']}+'|datetime'" th:value="${item['value']}"/>
 				</div>
 				</th>
 				<!-- 单图上传 -->
@@ -88,7 +88,7 @@
 				</th>
 				<!-- 多图上传 -->
 				<th th:case="images">
-					<widget:uploadMultipleImage th:name="${item['tag']} + '__upimgs'" th:value="${item['value']}" size="90x90" th:title="${item['title']}" tips="450x450"/>
+					<widget:uploadMultipleImage th:name="${item['tag']} + '__upimgs|'+${item['title']}+'|90x90|config'" th:value="${item['value']}"/>
 				</th>
 				<!-- 单文件上传 -->
 				<th th:case="file">
