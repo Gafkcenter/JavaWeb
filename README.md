@@ -94,6 +94,7 @@ JavaWeb采用LGPL-3.0开源协议
 | JavaWeb_Vue_UI前端 | 基于element-ui自定义编写 | https://gitee.com/javaweb520/JavaWeb_Vue_UI |
 | JavaWeb_Ant版本 | 前后端分离版，采用SpringBoot2+AntDesign | https://gitee.com/javaweb520/JavaWeb_Ant |
 | JavaWeb_Ant_UI前端 | 基于AntDesign自定义编写 | https://gitee.com/javaweb520/JavaWeb_Ant_UI |
+| JavaWeb_Cloud版本 | 基于微服务架构编写 | https://gitee.com/javaweb520/JavaWeb_Cloud |
 
 
 ### Thymeleaf模板引擎页面拆分
