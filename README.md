@@ -11,9 +11,6 @@
     <a href="https://www.thymeleaf.org/">
         <img src="https://img.shields.io/badge/thymeleaf-2.9.3-yellow.svg" alt="thymeleaf">
     </a> 
-	<a href="http://www.javaweb.vip/">
-	    <img src="https://img.shields.io/badge/JavaWeb-v1.0.0-brightgreen.svg" />
-	</a>
 	<a href="https://www.layui.com/">
         <img src="https://img.shields.io/badge/layui-2.5.6-blue.svg" alt="layui">
     </a>
