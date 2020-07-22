@@ -13,4 +13,11 @@ import com.javaweb.common.common.IBaseService;
  */
 public interface ILoginLogService extends IBaseService<LoginLog> {
 
+    /**
+     * 创建系统登录日志
+     *
+     * @param loginLog 访问日志对象
+     */
+    void insertLoginLog(LoginLog loginLog);
+
 }

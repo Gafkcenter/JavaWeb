@@ -99,9 +99,24 @@ public class MenuController extends BaseController {
      */
 //    @RequiresPermissions("sys:menu:delete")
     @Log(title = "菜单", businessType = BusinessType.DELETE)
-    @Override
-    public JsonResult delete(Integer id) {
+    @ResponseBody
+    @GetMapping("/delete/{id}")
+    public JsonResult delete(@PathVariable("id") Integer id) {
         return menuService.deleteById(id);
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param ids 记录ID(多个使用逗号","分隔)
+     * @return
+     */
+//    @RequiresPermissions("sys:menu:batchDelete")
+    @Log(title = "菜单", businessType = BusinessType.BATCH_DELETE)
+    @ResponseBody
+    @GetMapping("/batchDelete/{ids}")
+    public JsonResult batchDelete(@PathVariable("ids") String ids) {
+        return menuService.deleteByIds(ids);
     }
 
     /**

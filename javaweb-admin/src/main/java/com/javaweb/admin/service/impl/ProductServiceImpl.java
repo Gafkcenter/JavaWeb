@@ -1,12 +1,10 @@
 package com.javaweb.admin.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.admin.dto.DeleteSkuDto;
 import com.javaweb.admin.dto.GenerateSkuDto;
-import com.javaweb.admin.dto.ProductSkuListDto;
 import com.javaweb.admin.dto.UpdateSkuDto;
 import com.javaweb.admin.entity.*;
 import com.javaweb.admin.mapper.*;
@@ -14,7 +12,6 @@ import com.javaweb.admin.service.IProductAttributeValueService;
 import com.javaweb.admin.service.IProductSkuService;
 import com.javaweb.common.common.BaseQuery;
 import com.javaweb.common.utils.DateUtils;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.config.CommonConfig;
 import com.javaweb.common.utils.CommonUtils;
 import com.javaweb.common.utils.JsonResult;
@@ -22,7 +19,8 @@ import com.javaweb.common.utils.StringUtils;
 import com.javaweb.admin.constant.ProductConstant;
 import com.javaweb.admin.query.ProductQuery;
 import com.javaweb.admin.service.IProductService;
-import com.javaweb.shiro.utils.ShiroUtils;
+import com.javaweb.system.common.BaseServiceImpl;
+import com.javaweb.system.utils.ShiroUtils;
 import com.javaweb.system.utils.AdminUtils;
 import com.javaweb.admin.vo.ProductListVo;
 import org.springframework.beans.BeanUtils;
@@ -31,9 +29,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>

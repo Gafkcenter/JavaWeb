@@ -48,7 +48,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单节点：</label>
 			<div class="layui-input-block">
-				<widget:checkboxSingleSelect name="funcIds|name|id" data="1=列表,5=添加,10=修改,15=删除,20=状态" th:value="${info['roleIds']}?:[]"/>
+				<widget:checkboxSingleSelect name="funcIds|name|id" data="1=列表,5=添加,10=修改,15=删除,20=状态,25=批量删除" th:value="${info['roleIds']}?:[]"/>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -64,7 +64,6 @@
 					<input name="sort" th:value="${info['sort']}" lay-verify="required|number" autocomplete="off" placeholder="请输入显示顺序" class="layui-input" type="text">
 				</div>
 			</div>
-
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-inline">

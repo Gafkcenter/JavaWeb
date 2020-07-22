@@ -23,10 +23,12 @@ layui.use(['func'], function () {
                 } else if (d.type == 2) {
                     // 合作伙伴
                     cls = "layui-btn-danger";
-                } 
+                }
 				return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+d.typeName+'</span>';
             }}
-            , {field: 'url', width: 200, title: '友链地址', align: 'center'}
+            , {field: 'url', width: 200, title: '友链地址', align: 'center', templet(d) {
+                return "<a href='" + d.url + "' target='_blank'>" + d.url + "</a>";
+                }}
             , {field: 'itemName', width: 150, title: '站点ID', align: 'center'}
             , {field: 'cateName', width: 200, title: '栏目ID', align: 'center'}
             , {field: 'platform', width: 100, title: '平台', align: 'center', templet(d) {
@@ -43,7 +45,7 @@ layui.use(['func'], function () {
                 } else if (d.platform == 4) {
                     // APP应用
                     cls = "layui-btn-primary";
-                } 
+                }
 				return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+d.platformName+'</span>';
             }}
             , {field: 'form', width: 100, title: '友链形式', align: 'center', templet(d) {
@@ -54,7 +56,7 @@ layui.use(['func'], function () {
                 } else if (d.form == 2) {
                     // 图片链接
                     cls = "layui-btn-danger";
-                } 
+                }
 				return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+d.formName+'</span>';
             }}
             , {field: 'image', width: 100, title: '友链图片', align: 'center', templet: function (d) {
@@ -78,7 +80,7 @@ layui.use(['func'], function () {
         func.tableIns(cols, "tableList");
 
         //【设置弹框】
-        func.setWin("友链");
+        func.setWin("友链", 750, 630);
 
         //【设置状态】
         func.formSwitch('status', null, function (data, res) {

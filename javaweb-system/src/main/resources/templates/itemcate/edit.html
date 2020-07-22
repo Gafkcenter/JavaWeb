@@ -11,31 +11,31 @@
 				</div>
 			</div>
 			<div class="layui-inline">
-				<label class="layui-form-label">父级ID：</label>
+				<label class="layui-form-label">所属站点：</label>
 				<div class="layui-input-inline">
-					<input name="pid" th:value="${info['pid']}" lay-verify="required|number" autocomplete="off" placeholder="请输入父级ID" class="layui-input" type="text">
+					<widget:singleSelect name="itemId|1|所属站点|name|id" sql="SELECT id,`name` FROM sys_item WHERE `status`=1 AND mark=1 ORDER BY sort ASC;" th:value="${info['itemId']}?:0"/>
 				</div>
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<div class="layui-inline">
-				<label class="layui-form-label">站点ID：</label>
-				<div class="layui-input-inline">
-					<input name="itemId" th:value="${info['itemId']}" lay-verify="required|number" autocomplete="off" placeholder="请输入站点ID" class="layui-input" type="text">
-				</div>
-			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">拼音(全)：</label>
 				<div class="layui-input-inline">
 					<input name="pinyin" th:value="${info['pinyin']}" lay-verify="required" autocomplete="off" placeholder="请输入拼音(全)" class="layui-input" type="text">
 				</div>
 			</div>
-		</div>
-		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">拼音(简)：</label>
 				<div class="layui-input-inline">
 					<input name="code" th:value="${info['code']}" lay-verify="required" autocomplete="off" placeholder="请输入拼音(简)" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">状态：</label>
+				<div class="layui-input-inline">
+					<widget:switchCheck name="status" data="启用|停用" th:value="${info['status']} ?: 1"/>
 				</div>
 			</div>
 			<div class="layui-inline">
@@ -47,15 +47,9 @@
 		</div>
 		<div class="layui-form-item cover">
 			<label class="layui-form-label">封面：</label>
-			<widget:uploadSingleImage name="cover|封面|90x90|itemcate|建议上传尺寸450x450" th:value="${info['cover']}"/>
+			<widget:uploadSingleImage name="cover|封面|90x90|itemcate|建议上传尺寸450x450|450x450" th:value="${info['cover']}"/>
 		</div>
 		<div class="layui-form-item">
-			<div class="layui-inline">
-				<label class="layui-form-label">状态：</label>
-				<div class="layui-input-inline">
-					<widget:switchCheck name="status" data="启用|停用" th:value="${info['status']} ?: 1"/>
-				</div>
-			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">排序：</label>
 				<div class="layui-input-inline">

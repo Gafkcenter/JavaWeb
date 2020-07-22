@@ -3,12 +3,14 @@ package com.javaweb.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.javaweb.common.common.BaseQuery;
 import com.javaweb.common.utils.DateUtils;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
-import com.javaweb.shiro.utils.ShiroUtils;
+import com.javaweb.system.common.BaseServiceImpl;
+import com.javaweb.system.utils.ShiroUtils;
 import com.javaweb.system.constant.MenuConstant;
+import com.javaweb.system.entity.Admin;
 import com.javaweb.system.entity.Menu;
+import com.javaweb.system.mapper.AdminMapper;
 import com.javaweb.system.mapper.MenuMapper;
 import com.javaweb.system.query.MenuQuery;
 import com.javaweb.system.service.IMenuService;
@@ -35,6 +37,8 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
 
     @Autowired
     private MenuMapper menuMapper;
+    @Autowired
+    private AdminMapper adminMapper;
 
     /**
      * 获取数据列表
@@ -180,6 +184,11 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
                         funcInfo.setName("状态");
                         funcInfo.setUrl(String.format("/%s/setStatus", module));
                         funcInfo.setPermission(String.format("sys:%s:status", module));
+                    } else if (s.equals("25")) {
+                        // 批量删除
+                        funcInfo.setName("批量删除");
+                        funcInfo.setUrl(String.format("/%s/batchDelete", module));
+                        funcInfo.setPermission(String.format("sys:%s:batchDelete", module));
                     }
                     funcInfo.setPid(entity.getId());
                     funcInfo.setType(4);
@@ -235,20 +244,23 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      */
     @Override
     public List<MenuListVo> getNavbarMenu() {
+        // 获取当前人员拥有的角色ID几个(逗号分隔)
+        Admin admin = adminMapper.selectById(ShiroUtils.getAdminId());
+        String roleIds = admin.getRoleIds();
         // 顶部导航
-        List<MenuListVo> menuListVoList = menuMapper.getNavbarMenu(0);
+        List<MenuListVo> menuListVoList = menuMapper.getNavbarMenu(roleIds, 0);
         if (!menuListVoList.isEmpty()) {
             menuListVoList.forEach(item -> {
                 // 模块
-                List<MenuListVo> menuListVoList1 = menuMapper.getNavbarMenu(item.getId());
+                List<MenuListVo> menuListVoList1 = menuMapper.getNavbarMenu(roleIds, item.getId());
                 if (!menuListVoList1.isEmpty()) {
                     menuListVoList1.forEach(subItem -> {
                         // 菜单
-                        List<MenuListVo> menuListVoList2 = menuMapper.getNavbarMenu(subItem.getId());
+                        List<MenuListVo> menuListVoList2 = menuMapper.getNavbarMenu(roleIds, subItem.getId());
                         if (!menuListVoList2.isEmpty()) {
                             menuListVoList2.forEach(menu -> {
                                 // 节点
-                                List<MenuListVo> menuListVoList3 = menuMapper.getNavbarMenu(menu.getId());
+                                List<MenuListVo> menuListVoList3 = menuMapper.getNavbarMenu(roleIds, menu.getId());
                                 menu.setChildren(menuListVoList3);
                             });
                         }
@@ -259,5 +271,16 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
             });
         }
         return menuListVoList;
+    }
+
+    /**
+     * 根据人员ID获取菜单权限列表
+     *
+     * @param adminId 人员ID
+     * @return
+     */
+    @Override
+    public List<Menu> getMenuListByAdminId(Integer adminId) {
+        return menuMapper.getMenuListByAdminId(adminId);
     }
 }

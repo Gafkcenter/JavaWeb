@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.common.BaseQuery;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
+import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.constant.OperLogConstant;
 import com.javaweb.system.entity.OperLog;
 import com.javaweb.system.mapper.OperLogMapper;
@@ -108,6 +108,16 @@ public class OperLogServiceImpl extends BaseServiceImpl<OperLogMapper, OperLog> 
             return JsonResult.error("记录不存在");
         }
         return super.delete(entity);
+    }
+
+    /**
+     * 创建系统操作日志
+     *
+     * @param operLog 操作日志对象
+     */
+    @Override
+    public void insertOperlog(OperLog operLog) {
+        operLogMapper.insertOperlog(operLog);
     }
 
 }

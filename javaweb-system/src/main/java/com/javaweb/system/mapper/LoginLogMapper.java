@@ -13,4 +13,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface LoginLogMapper extends BaseMapper<LoginLog> {
 
+    /**
+     * 创建系统登录日志
+     *
+     * @param loginLog 登录信息
+     */
+    void insertLoginLog(LoginLog loginLog);
+
 }

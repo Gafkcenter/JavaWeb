@@ -4,6 +4,7 @@ import com.javaweb.common.utils.JsonResult;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -43,19 +44,6 @@ public class BaseController {
     public String edit(Integer id, Model model) {
         return this.render();
     }
-
-    /**
-     * 删除记录
-     *
-     * @param id 记录ID
-     * @return
-     */
-    @ResponseBody
-    @GetMapping("/delete")
-    public JsonResult delete(Integer id) {
-        return null;
-    }
-
 
     /**
      * 渲染模板

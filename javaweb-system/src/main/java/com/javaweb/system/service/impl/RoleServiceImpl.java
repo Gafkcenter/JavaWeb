@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.common.BaseQuery;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
+import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.constant.RoleConstant;
 import com.javaweb.system.entity.Role;
 import com.javaweb.system.mapper.RoleMapper;
@@ -142,5 +142,16 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
             return JsonResult.error("记录状态不能为空");
         }
         return super.setStatus(entity);
+    }
+
+    /**
+     * 根据人员ID获取角色列表
+     *
+     * @param adminId 人员ID
+     * @return
+     */
+    @Override
+    public List<Role> getRoleListByAdminId(Integer adminId) {
+        return roleMapper.getRoleListByAdminId(adminId);
     }
 }

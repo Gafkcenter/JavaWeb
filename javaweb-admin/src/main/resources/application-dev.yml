@@ -4,7 +4,7 @@ server:
 #  servlet:
 #    # 项目的前缀名
 #    context-path: /javaweb
-  IMAGE_URL: http://localhost:9010
+  IMAGE_URL: http://localhost:9010/
 
 spring:
   # 配置数据源

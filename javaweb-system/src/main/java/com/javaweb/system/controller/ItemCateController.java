@@ -11,12 +11,9 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.javaweb.common.common.BaseController;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -103,9 +100,24 @@ public class ItemCateController extends BaseController {
      */
 //    @RequiresPermissions("sys:itemcate:delete")
     @Log(title = "栏目", businessType = BusinessType.DELETE)
-    @Override
-    public JsonResult delete(Integer id) {
+    @ResponseBody
+    @GetMapping("/delete/{id}")
+    public JsonResult delete(@PathVariable("id") Integer id) {
         return itemCateService.deleteById(id);
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param ids 记录ID(多个使用逗号","分隔)
+     * @return
+     */
+//    @RequiresPermissions("sys:itemcate:batchDelete")
+    @Log(title = "栏目", businessType = BusinessType.BATCH_DELETE)
+    @ResponseBody
+    @GetMapping("/batchDelete/{ids}")
+    public JsonResult batchDelete(@PathVariable("ids") String ids) {
+        return itemCateService.deleteByIds(ids);
     }
 
     /**

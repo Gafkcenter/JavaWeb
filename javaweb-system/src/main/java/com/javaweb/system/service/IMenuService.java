@@ -17,6 +17,14 @@ import java.util.List;
 public interface IMenuService extends IBaseService<Menu> {
 
     /**
+     * 根据人员ID获取菜单权限
+     *
+     * @param adminId 人员ID
+     * @return
+     */
+    List<Menu> getMenuListByAdminId(Integer adminId);
+
+    /**
      * 获取导航菜单
      *
      * @return

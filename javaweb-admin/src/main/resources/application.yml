@@ -58,8 +58,8 @@ shiro:
 # 系统信息
 system:
   # 系统名称
-  fullName: JavaWeb后台开发框架
+  fullName: JavaWeb专业版后台开发框架
   # 系统简称
-  nickName: JavaWeb专业版v1.0.5
+  nickName: 专业版
   # 系统版本号
-  version: v1.0.5
+  version: v1.3.1

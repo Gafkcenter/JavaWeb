@@ -102,9 +102,24 @@ public class ${entityName}Controller extends BaseController {
      */
 //    @RequiresPermissions("sys:${entityName?lower_case}:delete")
     @Log(title = "${tableAnnotation}", businessType = BusinessType.DELETE)
-    @Override
-    public JsonResult delete(Integer id) {
+    @ResponseBody
+    @GetMapping("/delete/{id}")
+    public JsonResult delete(@PathVariable("id") Integer id) {
         return ${entityName?uncap_first}Service.deleteById(id);
+    }
+	
+	/**
+     * 批量删除
+     *
+     * @param id 记录ID
+     * @return
+     */
+//    @RequiresPermissions("sys:${entityName?lower_case}:batchDelete")
+    @Log(title = "${tableAnnotation}", businessType = BusinessType.BATCH_DELETE)
+    @ResponseBody
+    @GetMapping("/batchDelete/{ids}")
+    public JsonResult batchDelete(@PathVariable("ids") String ids) {
+        return ${entityName?uncap_first}Service.deleteByIds(ids);
     }
 
 <#if model_column?exists>

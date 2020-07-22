@@ -2,9 +2,9 @@ package com.javaweb.system.controller;
 
 import com.javaweb.common.config.SystemConfig;
 import com.javaweb.common.utils.JsonResult;
-import com.javaweb.shiro.dto.LoginDto;
-import com.javaweb.shiro.service.IShiroLoginService;
-import com.javaweb.shiro.utils.ShiroUtils;
+import com.javaweb.common.utils.RedisUtils;
+import com.javaweb.system.dto.LoginDto;
+import com.javaweb.system.service.ILoginService;
 import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
 
     @Autowired
-    private IShiroLoginService loginService;
+    private ILoginService loginService;
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     /**
      * 登录首页

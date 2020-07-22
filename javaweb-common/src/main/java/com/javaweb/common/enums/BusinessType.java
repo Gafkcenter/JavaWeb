@@ -60,4 +60,9 @@ public enum BusinessType {
      */
     STATUS,
 
+    /**
+     * 批量删除
+     */
+    BATCH_DELETE,
+
 }

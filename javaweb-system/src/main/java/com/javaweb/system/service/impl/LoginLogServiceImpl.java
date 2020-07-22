@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.common.BaseQuery;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
+import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.constant.LoginLogConstant;
 import com.javaweb.system.entity.LoginLog;
 import com.javaweb.system.mapper.LoginLogMapper;
@@ -126,5 +126,15 @@ public class LoginLogServiceImpl extends BaseServiceImpl<LoginLogMapper, LoginLo
             return JsonResult.error("记录状态不能为空");
         }
         return super.setStatus(entity);
+    }
+
+    /**
+     * 创建系统登录日志
+     *
+     * @param loginLog 访问日志对象
+     */
+    @Override
+    public void insertLoginLog(LoginLog loginLog) {
+        loginLogMapper.insertLoginLog(loginLog);
     }
 }

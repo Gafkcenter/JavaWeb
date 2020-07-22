@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.common.BaseQuery;
-import com.javaweb.shiro.common.BaseServiceImpl;
+import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.common.config.CommonConfig;
 import com.javaweb.common.utils.CommonUtils;
 import com.javaweb.common.utils.JsonResult;

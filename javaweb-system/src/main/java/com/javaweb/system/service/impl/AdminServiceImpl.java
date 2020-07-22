@@ -1,12 +1,16 @@
 package com.javaweb.system.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaweb.common.common.BaseQuery;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.config.CommonConfig;
 import com.javaweb.common.utils.CommonUtils;
+import com.javaweb.common.utils.DateUtils;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.constant.AdminConstant;
@@ -19,6 +23,7 @@ import com.javaweb.system.service.IAdminService;
 import com.javaweb.system.service.ICityService;
 import com.javaweb.system.service.IDepService;
 import com.javaweb.system.utils.AdminUtils;
+import com.javaweb.system.utils.ShiroUtils;
 import com.javaweb.system.vo.AdminInfoVo;
 import com.javaweb.system.vo.AdminListVo;
 import org.springframework.beans.BeanUtils;
@@ -27,7 +32,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +44,7 @@ import java.util.Map;
  * @since 2020-04-20
  */
 @Service
-public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implements IAdminService {
+public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
 
     @Autowired
     private AdminMapper adminMapper;
@@ -134,6 +138,20 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implem
     }
 
     /**
+     * 根据ID获取记录信息
+     *
+     * @param id 记录ID
+     * @return
+     */
+    @Override
+    public Map<String, Object> info(Integer id) {
+        Object entity = this.getInfo(id);
+        Map<String, Object> map = JSON.parseObject(JSON.toJSONString(entity), new TypeReference<Map<String, Object>>() {
+        });
+        return map;
+    }
+
+    /**
      * 获取记录详情
      *
      * @param id 记录ID
@@ -141,7 +159,7 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implem
      */
     @Override
     public Object getInfo(Serializable id) {
-        Admin entity = (Admin) super.getInfo(id);
+        Admin entity = (Admin) getById(id);
         // 拷贝属性
         AdminInfoVo adminInfoVo = new AdminInfoVo();
         BeanUtils.copyProperties(entity, adminInfoVo);
@@ -170,16 +188,34 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implem
      */
     @Override
     public JsonResult edit(Admin entity) {
-        // 头像
-        if (entity.getAvatar().contains(CommonConfig.imageURL)) {
-            entity.setAvatar(entity.getAvatar().replaceAll(CommonConfig.imageURL, ""));
-        }
-        if (!StringUtils.isEmpty(entity.getPassword())) {
-            entity.setPassword(CommonUtils.password(entity.getPassword()));
-        } else {
-            entity.setPassword(null);
-        }
-        return super.edit(entity);
+        return JsonResult.error("演示系统禁止操作");
+//        // 头像
+//        if (entity.getAvatar().contains(CommonConfig.imageURL)) {
+//            entity.setAvatar(entity.getAvatar().replaceAll(CommonConfig.imageURL, ""));
+//        }
+//        if (!StringUtils.isEmpty(entity.getPassword())) {
+//            entity.setPassword(CommonUtils.password(entity.getPassword()));
+//        } else {
+//            entity.setPassword(null);
+//        }
+//        boolean result = false;
+//        if (entity.getId() != null && entity.getId() > 0) {
+//            // 修改记录
+//            entity.setUpdateUser(ShiroUtils.getAdminId());
+//            entity.setUpdateTime(DateUtils.now());
+//            result = this.updateById(entity);
+//
+//        } else {
+//            // 新增记录
+//            entity.setCreateUser(ShiroUtils.getAdminId());
+//            entity.setCreateTime(DateUtils.now());
+//            entity.setMark(1);
+//            result = this.save(entity);
+//        }
+//        if (!result) {
+//            return JsonResult.error();
+//        }
+//        return JsonResult.success();
     }
 
     /**
@@ -190,14 +226,46 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implem
      */
     @Override
     public JsonResult deleteById(Integer id) {
-        if (id == null || id == 0) {
-            return JsonResult.error("记录ID不能为空");
-        }
-        Admin entity = this.getById(id);
-        if (entity == null) {
-            return JsonResult.error("记录不存在");
-        }
-        return super.delete(entity);
+        return JsonResult.error("演示系统禁止操作");
+//        if (id == null || id == 0) {
+//            return JsonResult.error("记录ID不能为空");
+//        }
+//        Admin entity = this.getById(id);
+//        if (entity == null) {
+//            return JsonResult.error("记录不存在");
+//        }
+//        entity.setUpdateUser(ShiroUtils.getAdminId());
+//        entity.setUpdateTime(DateUtils.now());
+//        entity.setMark(0);
+//        boolean result = this.updateById(entity);
+//        if (!result) {
+//            return JsonResult.error();
+//        }
+//        return JsonResult.success("删除成功");
+    }
+
+    /**
+     * 根据ID删除记录
+     *
+     * @param ids 记录ID
+     * @return
+     */
+    @Override
+    public JsonResult deleteByIds(String ids) {
+        return JsonResult.error("演示系统禁止操作");
+//        if (StringUtils.isEmpty(ids)) {
+//            return JsonResult.error("记录ID不能为空");
+//        }
+//        String[] item = ids.split(",");
+//        // 设置Mark=0
+//        UpdateWrapper updateWrapper = new UpdateWrapper();
+//        updateWrapper.set("mark", 0);
+//        updateWrapper.in("id", item);
+//        boolean result = update(updateWrapper);
+//        if (!result) {
+//            return JsonResult.error();
+//        }
+//        return JsonResult.success("删除成功");
     }
 
     /**
@@ -208,12 +276,34 @@ public class AdminServiceImpl extends BaseServiceImpl<AdminMapper, Admin> implem
      */
     @Override
     public JsonResult setStatus(Admin entity) {
-        if (entity.getId() == null || entity.getId() <= 0) {
-            return JsonResult.error("记录ID不能为空");
-        }
-        if (entity.getStatus() == null) {
-            return JsonResult.error("记录状态不能为空");
-        }
-        return super.setStatus(entity);
+        return JsonResult.error("演示系统禁止操作");
+//        if (entity.getId() == null || entity.getId() <= 0) {
+//            return JsonResult.error("记录ID不能为空");
+//        }
+//        if (entity.getStatus() == null) {
+//            return JsonResult.error("记录状态不能为空");
+//        }
+//        entity.setUpdateUser(ShiroUtils.getAdminId());
+//        entity.setUpdateTime(DateUtils.now());
+//        boolean result = this.updateById(entity);
+//        if (!result) {
+//            return JsonResult.error();
+//        }
+//        return JsonResult.success();
+    }
+
+    /**
+     * 根据用户名获取人员
+     *
+     * @param username 用户名
+     * @return
+     */
+    @Override
+    public Admin getAdminByUsername(String username) {
+        QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        queryWrapper.eq("mark", 1);
+        Admin user = adminMapper.selectOne(queryWrapper);
+        return user;
     }
 }

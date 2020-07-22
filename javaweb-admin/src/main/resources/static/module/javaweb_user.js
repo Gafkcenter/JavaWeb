@@ -40,7 +40,7 @@ layui.use(['func'], function () {
             }
             , {field: 'qrcode', width: 80, title: '推广码', align: 'center', templet: function (d) {
                     var qrcodeStr = "";
-                    if (d.qrcode) {
+                    if (d.qrcodeUrl) {
                         qrcodeStr = '<a href="' + d.qrcodeUrl + '" target="_blank"><img src="' + d.qrcodeUrl + '" height="26" /></a>';
                     }
                     return qrcodeStr;

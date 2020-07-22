@@ -29,7 +29,7 @@ layui.use(['func'], function () {
         func.tableIns(cols, "tableList");
 
         //【设置弹框】
-        func.setWin("布局描述", 600, 370);
+        func.setWin("布局描述", 500, 350);
 
     }
 });

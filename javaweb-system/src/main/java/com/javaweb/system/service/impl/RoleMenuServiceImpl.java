@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaweb.common.common.BaseQuery;
 import com.javaweb.common.utils.StringUtils;
-import com.javaweb.shiro.common.BaseServiceImpl;
 import com.javaweb.common.utils.JsonResult;
+import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.dto.RolePermissionDto;
 import com.javaweb.system.entity.Menu;
 import com.javaweb.system.entity.RoleMenu;
@@ -194,7 +194,10 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuMapper, RoleMen
         String[] authList = rolePermissionDto.getAuthIds().split(",");
         List<String> integerList = Arrays.asList(authList);
         // 删除已存在的角色权限
-        roleMenuMapper.deleteBatchIds(integerList);
+        QueryWrapper<RoleMenu> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role_id", rolePermissionDto.getRoleId());
+        roleMenuMapper.delete(queryWrapper);
+//        roleMenuMapper.deleteBatchIds(integerList);
         for (String s : authList) {
             RoleMenu roleMenu = new RoleMenu();
             roleMenu.setRoleId(rolePermissionDto.getRoleId());

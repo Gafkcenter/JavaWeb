@@ -21,7 +21,6 @@
         <module>javaweb-generator</module>
         <module>javaweb-system</module>
         <module>javaweb-admin</module>
-        <module>javaweb-shiro</module>
         <module>javaweb-quartz</module>
     </modules>
 
@@ -68,11 +67,6 @@
             <dependency>
                 <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-queue</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.javaweb</groupId>
-                <artifactId>javaweb-shiro</artifactId>
                 <version>${version}</version>
             </dependency>
             <dependency>

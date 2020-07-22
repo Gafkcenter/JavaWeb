@@ -20,7 +20,7 @@
     <div class="layui-header">
         <div class="layui-logo">
             <img src="/static/assets/images/logo.png"/>
-            <cite th:text="${nickName}">&nbsp;</cite>
+            <cite th:text="${nickName}+${version}">&nbsp;</cite>
         </div>
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item" lay-unselect>
@@ -79,7 +79,7 @@
         <div class="layui-side-scroll">
             <ul th:each="item,itemStat:${menuList}" th:class="'layui-nav layui-nav-tree ' + (${itemStat.index > 0} ? 'layui-hide' : '')" th:nav-id="'xt'+${itemStat.index+1}" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
                 <li th:each="subItem,subStat:${item.children}" class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-set"></i>&emsp;<cite th:text="${subItem.name}"></cite></a>
+                    <a><i th:class="'layui-icon '+${subItem.icon}"></i>&emsp;<cite th:text="${subItem.name}"></cite></a>
                     <dl class="layui-nav-child">
                         <dd th:each="menu,menuStat:${subItem.children}"><a th:lay-href="${menu.url}" th:text="${menu.name}"></a></dd>
                     </dl>

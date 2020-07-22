@@ -101,9 +101,24 @@ public class RoleMenuController extends BaseController {
      */
 //    @RequiresPermissions("sys:rolemenu:delete")
     @Log(title = "角色菜单关系", businessType = BusinessType.DELETE)
-    @Override
-    public JsonResult delete(Integer id) {
+    @ResponseBody
+    @GetMapping("/delete/{id}")
+    public JsonResult delete(@PathVariable("id") Integer id) {
         return roleMenuService.deleteById(id);
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param ids 记录ID(多个使用逗号","分隔)
+     * @return
+     */
+//    @RequiresPermissions("sys:rolemenu:batchDelete")
+    @Log(title = "角色菜单关系", businessType = BusinessType.BATCH_DELETE)
+    @ResponseBody
+    @GetMapping("/batchDelete/{ids}")
+    public JsonResult batchDelete(@PathVariable("ids") String ids) {
+        return roleMenuService.deleteByIds(ids);
     }
 
     /**
@@ -127,7 +142,8 @@ public class RoleMenuController extends BaseController {
     @ResponseBody
     @PostMapping("/setRolePermission")
     public JsonResult setRolePermission(@RequestBody RolePermissionDto rolePermissionDto) {
-        return roleMenuService.setRolePermission(rolePermissionDto);
+        return JsonResult.error("演示系统禁止操作");
+//        return roleMenuService.setRolePermission(rolePermissionDto);
     }
 
 }
