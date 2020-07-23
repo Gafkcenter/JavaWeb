@@ -51,22 +51,7 @@
             </dependency>
             <dependency>
                 <groupId>com.javaweb</groupId>
-                <artifactId>javaweb-framework</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.javaweb</groupId>
                 <artifactId>javaweb-admin</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.javaweb</groupId>
-                <artifactId>javaweb-quartz</artifactId>
-                <version>${version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.javaweb</groupId>
-                <artifactId>javaweb-queue</artifactId>
                 <version>${version}</version>
             </dependency>
             <dependency>

@@ -44,7 +44,7 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">出生日期：</label>
 				<div class="layui-input-inline">
-					<widget:dateSelect name="birthday|出生日期|date" th:value="${info['birthday']}"/>
+					<widget:dateSelect name="birthday|出生日期|date" th:value="${#dates.format(info['birthday'], 'yyyy-MM-dd')}"/>
 				</div>
 			</div>
 		</div>
