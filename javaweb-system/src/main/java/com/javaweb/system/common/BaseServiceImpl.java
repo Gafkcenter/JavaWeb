@@ -99,17 +99,17 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      */
     @Override
     public JsonResult edit(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (entity == null) {
-//            return JsonResult.error("实体对象不存在");
-//        }
-//        if (entity.getId() != null && entity.getId() > 0) {
-//            // 修改记录
-//            return this.update(entity);
-//        } else {
-//            // 新增记录
-//            return this.add(entity);
-//        }
+//        return JsonResult.error("演示系统禁止操作");
+        if (entity == null) {
+            return JsonResult.error("实体对象不存在");
+        }
+        if (entity.getId() != null && entity.getId() > 0) {
+            // 修改记录
+            return this.update(entity);
+        } else {
+            // 新增记录
+            return this.add(entity);
+        }
     }
 
     /**
@@ -120,15 +120,15 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      */
     @Override
     public JsonResult delete(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        entity.setUpdateUser(ShiroUtils.getAdminId());
-//        entity.setUpdateTime(DateUtils.now());
-//        entity.setMark(0);
-//        boolean result = this.updateById(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        entity.setUpdateUser(ShiroUtils.getAdminId());
+        entity.setUpdateTime(DateUtils.now());
+        entity.setMark(0);
+        boolean result = this.updateById(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -139,19 +139,19 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      */
     @Override
     public JsonResult deleteById(Integer id) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (StringUtils.isEmpty(id)) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        // 设置Mark=0
-//        UpdateWrapper updateWrapper = new UpdateWrapper();
-//        updateWrapper.set("mark", 0);
-//        updateWrapper.eq("id", id);
-//        boolean result = update(updateWrapper);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        if (StringUtils.isEmpty(id)) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        // 设置Mark=0
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.set("mark", 0);
+        updateWrapper.eq("id", id);
+        boolean result = update(updateWrapper);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -162,20 +162,20 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      */
     @Override
     public JsonResult deleteByIds(String ids) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (StringUtils.isEmpty(ids)) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        String[] item = ids.split(",");
-//        // 设置Mark=0
-//        UpdateWrapper updateWrapper = new UpdateWrapper();
-//        updateWrapper.set("mark", 0);
-//        updateWrapper.in("id", item);
-//        boolean result = update(updateWrapper);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        if (StringUtils.isEmpty(ids)) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        String[] item = ids.split(",");
+        // 设置Mark=0
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.set("mark", 0);
+        updateWrapper.in("id", item);
+        boolean result = update(updateWrapper);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -186,8 +186,8 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
      */
     @Override
     public JsonResult setStatus(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        return this.update(entity);
+//        return JsonResult.error("演示系统禁止操作");
+        return this.update(entity);
     }
 
     /**

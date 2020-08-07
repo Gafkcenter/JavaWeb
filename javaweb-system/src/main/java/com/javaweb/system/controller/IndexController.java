@@ -94,18 +94,18 @@ public class IndexController {
     @ResponseBody
     @PostMapping("/updateUserInfo")
     public JsonResult updateUserInfo(@RequestBody UpdateUserInfoDto userInfoDto) {
-        return JsonResult.error("演示系统禁止操作");
-//        Admin entity = new Admin();
-//        entity.setId(ShiroUtils.getAdminId());
-//        entity.setNickname(userInfoDto.getNickname());
-//        entity.setEmail(userInfoDto.getEmail());
-//        entity.setIntro(userInfoDto.getIntro());
-//        entity.setAddress(userInfoDto.getAddress());
-//        Integer result = adminMapper.updateById(entity);
-//        if (result == 0) {
-//            return JsonResult.error("更新失败");
-//        }
-//        return JsonResult.success();
+//        return JsonResult.error("演示系统禁止操作");
+        Admin entity = new Admin();
+        entity.setId(ShiroUtils.getAdminId());
+        entity.setNickname(userInfoDto.getNickname());
+        entity.setEmail(userInfoDto.getEmail());
+        entity.setIntro(userInfoDto.getIntro());
+        entity.setAddress(userInfoDto.getAddress());
+        Integer result = adminMapper.updateById(entity);
+        if (result == 0) {
+            return JsonResult.error("更新失败");
+        }
+        return JsonResult.success();
     }
 
     /**
@@ -117,35 +117,35 @@ public class IndexController {
     @ResponseBody
     @PostMapping("/updatePassword")
     public JsonResult updatePassword(@RequestBody UpdatePasswordDto updatePasswordDto) {
-        return JsonResult.error("演示系统禁止操作");
-//        // 原密码校验
-//        if (StringUtils.isEmpty(updatePasswordDto.getOldPassword())) {
-//            return JsonResult.error("原密码不能为空");
-//        }
-//        // 新密码校验
-//        if (StringUtils.isEmpty(updatePasswordDto.getNewPassword())) {
-//            return JsonResult.error("新密码不能为空");
-//        }
-//        // 确认密码
-//        if (StringUtils.isEmpty(updatePasswordDto.getRePassword())) {
-//            return JsonResult.error("确认密码不能为空");
-//        }
-//        if (!updatePasswordDto.getNewPassword().equals(updatePasswordDto.getRePassword())) {
-//            return JsonResult.error("两次输入的密码不一致");
-//        }
-//        // 获取当前用户的密码
-//        Admin adminInfo = adminMapper.selectById(ShiroUtils.getAdminId());
-//        if (adminInfo == null) {
-//            return JsonResult.error("用户信息不存在");
-//        }
-//        if (!adminInfo.getStatus().equals(1)) {
-//            return JsonResult.error("您的信息已被禁用");
-//        }
-//        adminInfo.setPassword(CommonUtils.password(updatePasswordDto.getNewPassword()));
-//        Integer result = adminMapper.updateById(adminInfo);
-//        if (result == 0) {
-//            return JsonResult.error("密码修改失败");
-//        }
-//        return JsonResult.success("密码修改成功");
+//        return JsonResult.error("演示系统禁止操作");
+        // 原密码校验
+        if (StringUtils.isEmpty(updatePasswordDto.getOldPassword())) {
+            return JsonResult.error("原密码不能为空");
+        }
+        // 新密码校验
+        if (StringUtils.isEmpty(updatePasswordDto.getNewPassword())) {
+            return JsonResult.error("新密码不能为空");
+        }
+        // 确认密码
+        if (StringUtils.isEmpty(updatePasswordDto.getRePassword())) {
+            return JsonResult.error("确认密码不能为空");
+        }
+        if (!updatePasswordDto.getNewPassword().equals(updatePasswordDto.getRePassword())) {
+            return JsonResult.error("两次输入的密码不一致");
+        }
+        // 获取当前用户的密码
+        Admin adminInfo = adminMapper.selectById(ShiroUtils.getAdminId());
+        if (adminInfo == null) {
+            return JsonResult.error("用户信息不存在");
+        }
+        if (!adminInfo.getStatus().equals(1)) {
+            return JsonResult.error("您的信息已被禁用");
+        }
+        adminInfo.setPassword(CommonUtils.password(updatePasswordDto.getNewPassword()));
+        Integer result = adminMapper.updateById(adminInfo);
+        if (result == 0) {
+            return JsonResult.error("密码修改失败");
+        }
+        return JsonResult.success("密码修改成功");
     }
 }

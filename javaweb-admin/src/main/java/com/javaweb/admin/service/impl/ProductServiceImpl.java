@@ -189,6 +189,7 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
      */
     @Override
     public JsonResult edit(Product entity) {
+//        return JsonResult.error("演示系统禁止操作");
         if (entity == null) {
             return JsonResult.error("实体对象不存在");
         }

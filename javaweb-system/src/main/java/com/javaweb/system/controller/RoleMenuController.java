@@ -142,8 +142,8 @@ public class RoleMenuController extends BaseController {
     @ResponseBody
     @PostMapping("/setRolePermission")
     public JsonResult setRolePermission(@RequestBody RolePermissionDto rolePermissionDto) {
-        return JsonResult.error("演示系统禁止操作");
-//        return roleMenuService.setRolePermission(rolePermissionDto);
+//        return JsonResult.error("演示系统禁止操作");
+        return roleMenuService.setRolePermission(rolePermissionDto);
     }
 
 }

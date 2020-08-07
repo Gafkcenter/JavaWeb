@@ -188,34 +188,34 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public JsonResult edit(Admin entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        // 头像
-//        if (entity.getAvatar().contains(CommonConfig.imageURL)) {
-//            entity.setAvatar(entity.getAvatar().replaceAll(CommonConfig.imageURL, ""));
-//        }
-//        if (!StringUtils.isEmpty(entity.getPassword())) {
-//            entity.setPassword(CommonUtils.password(entity.getPassword()));
-//        } else {
-//            entity.setPassword(null);
-//        }
-//        boolean result = false;
-//        if (entity.getId() != null && entity.getId() > 0) {
-//            // 修改记录
-//            entity.setUpdateUser(ShiroUtils.getAdminId());
-//            entity.setUpdateTime(DateUtils.now());
-//            result = this.updateById(entity);
-//
-//        } else {
-//            // 新增记录
-//            entity.setCreateUser(ShiroUtils.getAdminId());
-//            entity.setCreateTime(DateUtils.now());
-//            entity.setMark(1);
-//            result = this.save(entity);
-//        }
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success();
+//        return JsonResult.error("演示系统禁止操作");
+        // 头像
+        if (entity.getAvatar().contains(CommonConfig.imageURL)) {
+            entity.setAvatar(entity.getAvatar().replaceAll(CommonConfig.imageURL, ""));
+        }
+        if (!StringUtils.isEmpty(entity.getPassword())) {
+            entity.setPassword(CommonUtils.password(entity.getPassword()));
+        } else {
+            entity.setPassword(null);
+        }
+        boolean result = false;
+        if (entity.getId() != null && entity.getId() > 0) {
+            // 修改记录
+            entity.setUpdateUser(ShiroUtils.getAdminId());
+            entity.setUpdateTime(DateUtils.now());
+            result = this.updateById(entity);
+
+        } else {
+            // 新增记录
+            entity.setCreateUser(ShiroUtils.getAdminId());
+            entity.setCreateTime(DateUtils.now());
+            entity.setMark(1);
+            result = this.save(entity);
+        }
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success();
     }
 
     /**
@@ -226,22 +226,22 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public JsonResult deleteById(Integer id) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (id == null || id == 0) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        Admin entity = this.getById(id);
-//        if (entity == null) {
-//            return JsonResult.error("记录不存在");
-//        }
-//        entity.setUpdateUser(ShiroUtils.getAdminId());
-//        entity.setUpdateTime(DateUtils.now());
-//        entity.setMark(0);
-//        boolean result = this.updateById(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        if (id == null || id == 0) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        Admin entity = this.getById(id);
+        if (entity == null) {
+            return JsonResult.error("记录不存在");
+        }
+        entity.setUpdateUser(ShiroUtils.getAdminId());
+        entity.setUpdateTime(DateUtils.now());
+        entity.setMark(0);
+        boolean result = this.updateById(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -252,20 +252,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public JsonResult deleteByIds(String ids) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (StringUtils.isEmpty(ids)) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        String[] item = ids.split(",");
-//        // 设置Mark=0
-//        UpdateWrapper updateWrapper = new UpdateWrapper();
-//        updateWrapper.set("mark", 0);
-//        updateWrapper.in("id", item);
-//        boolean result = update(updateWrapper);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        if (StringUtils.isEmpty(ids)) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        String[] item = ids.split(",");
+        // 设置Mark=0
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.set("mark", 0);
+        updateWrapper.in("id", item);
+        boolean result = update(updateWrapper);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -276,20 +276,20 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public JsonResult setStatus(Admin entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (entity.getId() == null || entity.getId() <= 0) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        if (entity.getStatus() == null) {
-//            return JsonResult.error("记录状态不能为空");
-//        }
-//        entity.setUpdateUser(ShiroUtils.getAdminId());
-//        entity.setUpdateTime(DateUtils.now());
-//        boolean result = this.updateById(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success();
+//        return JsonResult.error("演示系统禁止操作");
+        if (entity.getId() == null || entity.getId() <= 0) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        if (entity.getStatus() == null) {
+            return JsonResult.error("记录状态不能为空");
+        }
+        entity.setUpdateUser(ShiroUtils.getAdminId());
+        entity.setUpdateTime(DateUtils.now());
+        boolean result = this.updateById(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success();
     }
 
     /**

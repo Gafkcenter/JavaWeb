@@ -130,6 +130,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
      */
     @Override
     public JsonResult edit(Menu entity) {
+//        return JsonResult.error("演示系统禁止操作");
         if (entity == null) {
             return JsonResult.error("实体对象不存在");
         }
