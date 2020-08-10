@@ -8,12 +8,14 @@ import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.constant.LevelConstant;
+import com.javaweb.system.dto.LevelDto;
 import com.javaweb.system.entity.Level;
 import com.javaweb.system.mapper.LevelMapper;
 import com.javaweb.system.query.LevelQuery;
 import com.javaweb.system.service.ILevelService;
 import com.javaweb.system.utils.AdminUtils;
 import com.javaweb.system.vo.LevelListVo;
+import io.netty.util.internal.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -142,5 +144,36 @@ public class LevelServiceImpl extends BaseServiceImpl<LevelMapper, Level> implem
             return JsonResult.error("记录状态不能为空");
         }
         return super.setStatus(entity);
+    }
+
+    /**
+     * 批量设置状态
+     *
+     * @param levelDto 状态Dto
+     * @return
+     */
+    @Override
+    public JsonResult batchStatus(LevelDto levelDto) {
+        if (StringUtils.isEmpty(levelDto.getIds())) {
+            return JsonResult.error("请选择数据源");
+        }
+        if (levelDto.getStatus() == null || levelDto.getStatus() <= 0) {
+            return JsonResult.error("状态值不能为空");
+        }
+        String[] item = levelDto.getIds().split(",");
+        Integer totalNum = 0;
+        for (String s : item) {
+            Level entity = new Level();
+            entity.setId(Integer.valueOf(s));
+            entity.setStatus(levelDto.getStatus());
+            Integer result = levelMapper.updateById(entity);
+            if (result > 0) {
+                totalNum++;
+            }
+        }
+        if (totalNum != item.length) {
+            return JsonResult.error("批量设置状态失败");
+        }
+        return JsonResult.success("批量设置成功");
     }
 }

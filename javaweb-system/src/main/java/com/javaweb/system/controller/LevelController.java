@@ -4,9 +4,11 @@ package com.javaweb.system.controller;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.annotation.Log;
 import com.javaweb.common.enums.BusinessType;
+import com.javaweb.system.dto.LevelDto;
 import com.javaweb.system.entity.Level;
 import com.javaweb.system.query.LevelQuery;
 import com.javaweb.system.service.ILevelService;
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -131,5 +133,19 @@ public class LevelController extends BaseController {
     @PostMapping("/setStatus")
     public JsonResult setStatus(@RequestBody Level entity) {
         return levelService.setStatus(entity);
+    }
+
+    /**
+     * 批量设置状态
+     *
+     * @param levelDto 状态Dto
+     * @return
+     */
+    //    @RequiresPermissions("sys:level:batchStatus")
+    @Log(title = "职级", businessType = BusinessType.STATUS)
+    @ResponseBody
+    @PostMapping("/batchStatus")
+    public JsonResult batchStatus(@RequestBody LevelDto levelDto) {
+        return levelService.batchStatus(levelDto);
     }
 }
