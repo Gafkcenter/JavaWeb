@@ -58,6 +58,7 @@ public class IndexController {
         model.addAttribute("user", admin);
 
         // 系统信息
+        model.addAttribute("fullName", SystemConfig.fullName);
         model.addAttribute("nickName", SystemConfig.nickName);
         model.addAttribute("version", SystemConfig.version);
         return "index";
