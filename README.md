@@ -288,70 +288,70 @@ layui.use(['func'], function () {
 ## 效果图展示
  
 #### 1、系统登录
- ![系统登录](http://images.javaweb.rxthink.cn/demo/1.png)
+ ![系统登录](http://images.javaweb.vip/demo/1.png)
  
 #### 2、系统主页
- ![系统主页](http://images.javaweb.rxthink.cn/demo/2.png)
+ ![系统主页](http://images.javaweb.vip/demo/2.png)
  
 #### 3、人员管理
- ![人员管理](http://images.javaweb.rxthink.cn/demo/3.png)
+ ![人员管理](http://images.javaweb.vip/demo/3.png)
  
 #### 4、头像裁剪
- ![头像裁剪](http://images.javaweb.rxthink.cn/demo/4.png)
+ ![头像裁剪](http://images.javaweb.vip/demo/4.png)
  
 #### 5、角色管理
- ![角色管理](http://images.javaweb.rxthink.cn/demo/5.png)
+ ![角色管理](http://images.javaweb.vip/demo/5.png)
  
 #### 6、角色设置
- ![角色设置](http://images.javaweb.rxthink.cn/demo/6.png)
+ ![角色设置](http://images.javaweb.vip/demo/6.png)
  
 #### 7、职级管理
- ![职级管理](http://images.javaweb.rxthink.cn/demo/7.png)
+ ![职级管理](http://images.javaweb.vip/demo/7.png)
  
 #### 8、岗位管理
- ![岗位管理](http://images.javaweb.rxthink.cn/demo/8.png)
+ ![岗位管理](http://images.javaweb.vip/demo/8.png)
  
 #### 9、部门管理
- ![部门管理](http://images.javaweb.rxthink.cn/demo/9.png)
+ ![部门管理](http://images.javaweb.vip/demo/9.png)
  
 #### 10、菜单管理
- ![菜单管理](http://images.javaweb.rxthink.cn/demo/10.png)
+ ![菜单管理](http://images.javaweb.vip/demo/10.png)
  
 #### 11、菜单编辑
- ![菜单编辑](http://images.javaweb.rxthink.cn/demo/11.png)
+ ![菜单编辑](http://images.javaweb.vip/demo/11.png)
  
 #### 12、操作日志
- ![操作日志](http://images.javaweb.rxthink.cn/demo/12.png)
+ ![操作日志](http://images.javaweb.vip/demo/12.png)
  
 #### 13、广告管理
- ![广告管理](http://images.javaweb.rxthink.cn/demo/13.png)
+ ![广告管理](http://images.javaweb.vip/demo/13.png)
  
 #### 14、配置管理
- ![配置管理](http://images.javaweb.rxthink.cn/demo/14.png)
+ ![配置管理](http://images.javaweb.vip/demo/14.png)
  
 #### 15、友链管理
-![友链管理](http://images.javaweb.rxthink.cn/demo/15.png)
+![友链管理](http://images.javaweb.vip/demo/15.png)
 
 #### 16、通知公告
-![通知公告](http://images.javaweb.rxthink.cn/demo/16.png)
+![通知公告](http://images.javaweb.vip/demo/16.png)
 
 #### 17、代码生成器
-![代码生成器](http://images.javaweb.rxthink.cn/demo/17.png)
+![代码生成器](http://images.javaweb.vip/demo/17.png)
 
 #### 18、商品及SKU管理
- ![商品及SKU管理](http://images.javaweb.rxthink.cn/demo/18.png)
+ ![商品及SKU管理](http://images.javaweb.vip/demo/18.png)
  
 #### 19、文章管理
-![文章管理](http://images.javaweb.rxthink.cn/demo/19.png)
+![文章管理](http://images.javaweb.vip/demo/19.png)
 
 #### 20、会员中心
-![会员中心](http://images.javaweb.rxthink.cn/demo/20.png)
+![会员中心](http://images.javaweb.vip/demo/20.png)
 
 #### 21、统计报表
-![统计报表](http://images.javaweb.rxthink.cn/demo/21.png)
+![统计报表](http://images.javaweb.vip/demo/21.png)
 
 #### 22、统计报表
-![统计报表](http://images.javaweb.rxthink.cn/demo/22.png)
+![统计报表](http://images.javaweb.vip/demo/22.png)
 
 
 ## 更新说明
