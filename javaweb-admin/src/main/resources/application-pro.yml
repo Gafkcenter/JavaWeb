@@ -104,9 +104,9 @@ spring:
     # 设置邮箱主机
     host: smtp.qq.com
     # 开启邮箱POP3/SMTP服务，获取客户端授权码(注意并不是邮箱密码，而是授权码)
-    password: bqsjzhmkjpfpjdaf
+    password:
     # 邮箱的用户名
-    username: 1175401194@qq.com
+    username:
     properties:
       mail:
         smtp:

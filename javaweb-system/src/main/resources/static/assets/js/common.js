@@ -6,7 +6,7 @@ layui.config({  // common.js是配置layui扩展模块的目录，每个页面�
     steps: 'steps/steps',
     notice: 'notice/notice',
     cascader: 'cascader/cascader',
-    dropdown: 'dropdown/dropdown',
+    dropdown: 'dropdown2/dropdown',
     fileChoose: 'fileChoose/fileChoose',
     Split: 'Split/Split',
     Cropper: 'Cropper/Cropper',

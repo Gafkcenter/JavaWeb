@@ -1,0 +1,128 @@
+<html layout:decorator="public/layout" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+
+    <widget:dropdown name="更多操作|demo" menus="{menus: [{layIcon:'layui-icon-username',txt: '个人中心', event:'usercenter'}, {layIcon: 'layui-icon-set',txt: '设置', event:'set'}, 'hr',{layIcon: 'layui-icon-logout', txt: '退出登录', event:'loginout'}]}"/>
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test1"
+            lay-dropdown="{align:'left', menus: [{layIcon:'layui-icon-username',txt: '个人中心', event:'usercenter'}, {layIcon: 'layui-icon-set',txt: '设置', event:'set'}, {layIcon: 'layui-icon-logout', txt: '退出登录', event:'loginout'}]}">
+        <span>左对齐</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test4"
+            lay-dropdown="{menus: [{layIcon:'layui-icon-username',txt: '个人中心', event:'usercenter'}, {layIcon: 'layui-icon-set',txt: '设置', event:'set'}, 'hr',{layIcon: 'layui-icon-logout', txt: '退出登录', event:'loginout'}]}">
+        <span>菜单分割线</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test5"
+            lay-dropdown="{menus: [{header: '用户'},{layIcon:'layui-icon-username',txt: '个人中心', event:'usercenter'}, {layIcon: 'layui-icon-set',txt: '信息设置', event:'set'}, {header: '操作',align:'left'},{layIcon: 'layui-icon-praise', txt: '点赞加油', event:'praise'},{layIcon: 'layui-icon-logout', txt: '退出登录', event:'loginout'},{header: '其他',align:'left'},{layIcon: 'layui-icon-tips', txt: '关于网站', event:'about'}]}">
+        <span>带header的下拉菜单</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test7"
+            lay-dropdown="{showBy: 'hover',align:'left', menus: [{layIcon:'layui-icon-username',txt: '个人中心', event:'usercenter'}, {layIcon: 'layui-icon-set',txt: '设置', event:'set'}, {layIcon: 'layui-icon-logout', txt: '退出登录', event:'loginout'}]}">
+        <span>hover触发下拉菜单</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+
+    <!-- 审批下拉气泡 -->
+    <widget:popMenu name="气泡演示|popmenu"
+                    param="修改信息|modify|layui-btn-primary,开通会员|openvip"
+                    content="大家好，我是自定义下拉内容，在这里你可以放任何你希望放置的下拉内容哦。"
+                    logo="http://images.javaweb.vip/logo.png"/>
+
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test8">
+        <span>下拉自定义内容</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+    <!-- 自定义下拉菜单内容 -->
+    <script id="mymenu" type="text/html">
+        <div style="padding: 20px;max-width: 300px;display: flex;display: -webkit-flex">
+            <img src="http://images.javaweb.vip/logo.png" style="width: 60px;min-width:60px;height: 60px;border-radius: 50%;">
+            <div style="display: inline-block;word-break: break-all;margin-left: 20px">
+                大家好，我是自定义下拉内容，在这里你可以放任何你希望放置的下拉内容哦。<br><br>
+                <button class="layui-btn layui-btn-xs layui-btn-primary modify">修改信息</button>
+                <button class="layui-btn layui-btn-xs openvip">开通会员</button>
+            </div>
+        </div>
+    </script>
+
+    <!-- 审批下拉气泡图片 -->
+    <widget:popImage name="气泡演示|popmenu"
+                    param="修改信息|modify|layui-btn-primary,开通会员|openvip"
+                    content="大家好，我是自定义下拉内容，在这里你可以放任何你希望放置的下拉内容哦。"
+                    logo="http://images.javaweb.vip/logo.png"/>
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test9" lay-dropdown="{template: '#myimg'}">
+        <span>下拉显示图片</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+    <!-- 自定义下拉菜单内容 - 图片 -->
+    <script id="myimg" type="text/html">
+        <img src="https://file.microanswer.cn/microanswer_head.png" style="width: 150px;height: 150px;">
+    </script>
+
+    <widget:dropdown name="更多操作|demo" menus="{menus: [{layIcon:'layui-icon-username',txt: '个人中心', event:'usercenter'}, {layIcon: 'layui-icon-set',txt: '设置', event:'set'}, 'hr',{layIcon: 'layui-icon-logout', txt: '退出登录', event:'loginout'}]}"/>
+
+    <button class="layui-btn layui-btn-sm" lay-filter="test_m_1" lay-dropdown="{templateMenu: 'test_m_1_template', templateMenuSptor:'()'}">
+        <span>双列下拉菜单</span>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+    </button>
+    <!-- 双列下拉 菜单配置模板 -->
+    <script id="test_m_1_template" type="text/plain">
+
+  (
+    ({txt: "个人中心1", event: "usercenter"})
+    ({txt: "头像设置", event: "sethead"})
+    ({txt: "注销账号", event: "desctroy"})
+  )
+
+  (
+    ({txt: "赠送红包", event: "redp"})
+    ({txt: "缴费通知", event: "qftt"})
+    ({txt: "强制下线", event: "offline"})
+  )
+
+</script>
+
+    <script>
+        layui.use(['dropdown', 'func'], function () {
+            var dropdown = layui.dropdown;
+            var func = layui.func;
+
+            // 左中右对齐
+            dropdown.onFilter("test1",  function (event) {layer.msg("你点击了test1：" + event);});
+
+            // 菜单分割线
+            dropdown.onFilter("test4",  function (event) {layer.msg("你点击了test4：" + event);});
+
+            // 带header菜单
+            dropdown.onFilter("test5",  function (event) {layer.msg("你点击了test5：" + event);});
+
+            // 触发下拉
+            dropdown.onFilter("test7",  function (event) {layer.msg("你点击了test7：" + event);});
+
+            // 下拉自定义内容
+            dropdown.suite("[lay-filter='test8']", {
+                template: "#mymenu",
+                success: function ($dom) {
+                    $dom.find(".modify").click(function () {
+                        layer.msg("你点击了【修改信息】");
+                        dropdown.hide("[lay-filter='test8']");
+                    });
+
+                    $dom.find(".openvip").click(function () {
+                        layer.msg("你点击了【开通会员】");
+                        dropdown.hide("[lay-filter='test8']");
+                    });
+                }
+            });
+        })
+
+    </script>
+
+</div>
+</html>

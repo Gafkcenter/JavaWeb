@@ -26,7 +26,7 @@ import java.util.Set;
 public class MyShiroRealm extends AuthorizingRealm {
 
     @Autowired
-    private ILoginService shiroLoginService;
+    private ILoginService loginService;
 
     @Autowired
     private IRoleService roleService;
@@ -94,7 +94,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         }
         Admin admin = null;
         try {
-            admin = shiroLoginService.login(username, password);
+            admin = loginService.login(username, password);
         } catch (CaptchaException e) {
             throw new AuthenticationException(e.getMessage(), e);
         } catch (UserNotExistsException e) {
